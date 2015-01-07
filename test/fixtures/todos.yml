@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  todo_item: MyText
+  todo_for: MyString
+  todo_deadline: 2015-01-07 11:22:55
+  todo_importance: 1
+  todo_urgence: 1
+  todo_timerequired: 9.99
+  todo_recurring: false
+  todo_frequency: MyString
+  todo_status: 9.99
+  todo_timeremaining: 9.99
+  todo_ranking: 1
+  todo_complete: false
+
+two:
+  todo_item: MyText
+  todo_for: MyString
+  todo_deadline: 2015-01-07 11:22:55
+  todo_importance: 1
+  todo_urgence: 1
+  todo_timerequired: 9.99
+  todo_recurring: false
+  todo_frequency: MyString
+  todo_status: 9.99
+  todo_timeremaining: 9.99
+  todo_ranking: 1
+  todo_complete: false
