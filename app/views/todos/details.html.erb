@@ -4,7 +4,7 @@
 
 <div class="row">
 
-<div class="span4">
+<div class="span6">
 
 <h1>Shared Todo App</h1>
 
@@ -39,13 +39,23 @@
 <% end %>
 
 <div class="well">
+  
 
   <%= form_for @details_todo, :url => { :action => "updatetodo" } do |f| %>
-
-  Todo: <%= f.text_field :todo_item %><br>
-  For:  <%= f.text_field :todo_for %>
-  <%= f.submit "Update todo", class: "btn btn-primary" %>
-
+  <table style="width:600">
+  <tr><td width:10%>Todo:</td><td width:40%><%= f.text_field :todo_item %></td>
+      <td width:10%>Status:</td><td width:40%><%= f.text_field :todo_status, :value => (((@details_todo.todo_status.to_f)*100).to_i).to_s + "%" %></td></tr>
+  <tr><td width:10%>For:</td><td width:40%><%= f.text_field :todo_for %></td>
+      <td width:10%>Deadline:</td><td width:40%><%= f.text_field :todo_deadline %></td></tr>
+  <tr><td width:10%>Category:</td><td width:40%><%= f.select( :todo_category, options_for_select([[''],['Work'],['Personal'],['Other']],@details_todo.todo_category)) %></td>
+      <td width:10%>Project:</td><td width:40%><%= f.text_field :todo_project %></td></tr>
+  <tr><td width:10%>Time Required:</td><td width:40%><%= f.text_field :todo_timerequired %></td>
+      <td width:10%>Importance:</td><td width:40%><%= f.select( :todo_importance, options_for_select([[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]],@details_todo.todo_importance)) %></td></tr>
+  <tr><td width:10%>Recurring:</td><td width:40%><%= f.check_box :todo_recurring %></td></tr>
+  <tr><td width:10%>Frequency:</td><td width:40%><%= f.select( :todo_frequency, options_for_select([[''],['Daily'],['Week Days'],['Weekly'],['Fortnightly'],['Monthly'],['Yearly']],@details_todo.todo_frequency)) %></td>
+      <td width:10%>End Date or Occurences:</td><td width:40%><%= f.text_field :todo_enddate %></td></tr>
+  <tr><td width:100%><%= f.submit "Update todo", class: "btn btn-primary" %></td></tr>
+  </table>
   <% end %>
 
 </div> <!-- well -->
