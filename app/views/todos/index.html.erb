@@ -4,13 +4,11 @@
 
 <div class="row">
 
-<div class="span10">
+<div class="span6">
 
 <h1>Shared Todo App</h1>
 
 <hr>
-
-<p>All your todos here</p>
 
 <%= form_for @new_todo, :url => { :action => "add" } do |f| %>
 
@@ -46,29 +44,34 @@
 <div class="well">
 
   <%= form_tag("/todos/complete/", :method => "post") do %>
-
-    <ul style="list-style-type:none;">
-
-      <% @todo_items.each do |t| %>
-
-	<% if t.todo_complete == true %>
+<h4>Todo Today</h4>
+    <table width="460">
+	
+      <tr>
+      <td width = 60%><strong>Item</strong></td>
+      <td width = 15%><strong>For</strong></td>
+      <td width = 25%><strong>Deadline</strong></td>
+      </tr>
+      <% @todo_today.each do |t| %>
+	<tr>	
+	<td width=60%><% if t.todo_complete == true %>
           
-          <li style="color:grey;"> <%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike></li>
+          <%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
 
         <% else %>
 
-          <li> <%= check_box_tag "todos_checkbox[]",t.id %> <%= t.todo_item %> </li>
-        <% end %>
+          <%= check_box_tag "todos_checkbox[]",t.id %> <%= t.todo_item %>
+        <% end %></td>
+	<td width=15%><%= t.todo_for %></td>
+	<td width=25%><%= t.todo_deadline %></td>
+      <% end %></tr>
 
-      <% end %>
+    </table>
 
-    </ul>
-
-    <%= submit_tag("Complete Todos", :class=>"btn btn-success") %>
-
+    <%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
+    <%= submit_tag("Update", :class=>"btn btn-primary", :name=>"update_todo") %>
+    <%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
   <% end %>
-
-<br><%= link_to "Delete last todo", delete_path %>
 
 </div> <!-- well -->
 
