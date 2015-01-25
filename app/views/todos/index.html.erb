@@ -41,10 +41,16 @@
 
 <% end %>
 
+<table width="940">
+
+<tr valign="top">
+
+<td width = 49%>
+
 <div class="well">
 
   <%= form_tag("/todos/complete/", :method => "post") do %>
-<h4>Todo Today</h4>
+<h4>Today</h4>
     <table width="460">
 	
       <tr>
@@ -60,20 +66,148 @@
 
         <% else %>
 
-          <%= check_box_tag "todos_checkbox[]",t.id %> <%= t.todo_item %>
+          <%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+
         <% end %></td>
 	<td width=15%><%= t.todo_for %></td>
 	<td width=25%><%= t.todo_deadline %></td>
       <% end %></tr>
-
     </table>
-
+    <br>
     <%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
-    <%= submit_tag("Update", :class=>"btn btn-primary", :name=>"update_todo") %>
     <%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
   <% end %>
 
 </div> <!-- well -->
+
+</td>
+
+<td width=2%></td>
+
+<td width = 49%>
+
+<div class="span3">
+
+<div class="well">
+
+  <%= form_tag("/todos/complete/", :method => "post") do %>
+<h4>Tomorrow</h4>
+    <table width="220">
+	
+      <tr>
+      <td><strong>Item</strong></td>
+      </tr>
+      <% @todo_tomorrow.each do |t| %>
+	<tr>	
+	<td><% if t.todo_complete == true %>
+          
+          <%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+
+        <% else %>
+
+          <%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+
+        <% end %></td>
+
+      <% end %></tr>
+
+    </table>
+    <br>
+    <%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
+    <%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
+  <% end %>
+
+</div>
+
+</div> <!-- well -->
+
+</td>
+
+<td width=2%></td>
+
+<td width = 49%>
+
+<div class="span3">
+
+<div class="well">
+
+  <%= form_tag("/todos/complete/", :method => "post") do %>
+<h4>Rest of the Week</h4>
+    <table width="220">
+	
+      <tr>
+      <td><strong>Item</strong></td>
+      </tr>
+      <% @todo_week.each do |t| %>
+	<tr>	
+	<td><% if t.todo_complete == true %>
+          
+          <%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+
+        <% else %>
+
+          <%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+
+        <% end %></td>
+
+      <% end %></tr>
+
+    </table>
+    <br>
+    <%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
+    <%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
+  <% end %>
+
+</div>
+
+</div> <!-- well -->
+
+</td>
+
+<td width=2%></td>
+
+<td width = 49%>
+
+<div class="span3">
+
+<div class="well">
+
+  <%= form_tag("/todos/complete/", :method => "post") do %>
+<h4>Personal</h4>
+    <table width="220">
+	
+      <tr>
+      <td><strong>Item</strong></td>
+      </tr>
+      <% @todo_personal.each do |t| %>
+	<tr>	
+	<td><% if t.todo_complete == true %>
+          
+          <%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+
+        <% else %>
+
+          <%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+
+        <% end %></td>
+
+      <% end %></tr>
+
+    </table>
+    <br>
+    <%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
+    <%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
+  <% end %>
+
+</div>
+
+</div> <!-- well -->
+
+</td>
+
+</tr>
+
+</table>
 
 </div> <!-- span4 -->
 

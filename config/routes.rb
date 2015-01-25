@@ -62,8 +62,7 @@ match 'todos/delete' => 'todos#delete', :via => [:get], :as => :delete
 
 match 'todos/complete' => 'todos#complete', :via => :post
 
-match 'todos/details' => 'todos#details', :via => [:get], :as => :details
+match 'todos/details/:id' => 'todos#details', :via => [:get], :as => :details
 
-patch 'todos/updatetodo' => 'todos#updatetodo', :via => :post
-
+patch 'todos/updatetodo/' => 'todos#updatetodo', :via => :post
 end

@@ -7,9 +7,10 @@ class TodosController < ApplicationController
     Todo.where("todo_complete is true AND todo_deadline < curdate()").update_all todo_urgence: 0
     @todo_items = Todo.all
     @new_todo = Todo.new
-    @todo_today = @todo_items.where("todo_urgence = 11 OR todo_deadline = curdate()").order("todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC")
-    @todo_tomorrow = @todo_items.where("todos.todo_deadline = curdate()+1")
-
+    @todo_today = @todo_items.where("todos.todo_category<>'Personal' and (todo_urgence = 11 OR todo_deadline = curdate())").order("todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC")
+    @todo_tomorrow = @todo_items.where("todos.todo_category<>'Personal' and todos.todo_deadline = curdate()+1")
+    @todo_week = @todo_items.where("todos.todo_category<>'Personal' and todos.todo_deadline > curdate()+1 and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) + 1 DAY), INTERVAL 1 WEEK)")
+    @todo_personal = @todo_items.where("todos.todo_category='Personal' and (todos.todo_complete = false or todos.updated_at>=curdate())").order("todo_complete ASC, todo_item ASC")
     render :index
 
   end
@@ -22,7 +23,7 @@ class TodosController < ApplicationController
     else
       flash[:success] = "Todo added successfully"
     end
-    redirect_to details_path
+    redirect_to details_path(todo.id)
 
   end
 
@@ -37,7 +38,7 @@ class TodosController < ApplicationController
 
   def complete
 
-    if params['todo_complete']
+    if params['complete_todo']
 
       params[:todos_checkbox].each do |check|
 
@@ -45,7 +46,35 @@ class TodosController < ApplicationController
 
         t=Todo.find_by_id(todo_id)
 
-        t.todo_complete= !t.todo_complete
+	if t.todo_recurring and !t.todo_complete
+	
+	  recur=Todo.new
+	  recur.todo_item=t.todo_item
+	  recur.todo_for=t.todo_for
+	  recur.todo_category=t.todo_category
+	  recur.todo_project=t.todo_project
+	  recur.todo_timerequired=t.todo_timerequired
+	  recur.todo_importance=t.todo_importance
+	  recur.todo_status = 0
+	  recur.todo_recurring=t.todo_recurring
+	  recur.todo_frequency=t.todo_frequency
+	  recur.todo_enddate=t.todo_enddate
+	  recur.todo_deadline = case t.todo_frequency
+            when 'Daily'       then (t.todo_deadline).to_time.advance(:days => 1).to_date
+            when 'Week Days'   then (t.todo_deadline).to_time.advance(:days => 1).to_date
+	    when 'Weekly'      then (t.todo_deadline).to_time.advance(:weeks => 1).to_date
+            when 'Fortnightly' then (t.todo_deadline).to_time.advance(:weeks => 2).to_date
+            when 'Monthly'     then (t.todo_deadline).to_time.advance(:months => 1).to_date
+            when 'Yearly'      then (t.todo_deadline).to_time.advance(:years => 1).to_date
+          end
+          recur.todo_timeremaining = (1-recur.todo_status)*recur.todo_timerequired
+	  if !recur.todo_enddate.nil? and recur.todo_enddate > recur.todo_deadline
+            recur.save
+          end
+	
+	end
+
+        t.todo_complete = !t.todo_complete
 
         t.save
 
@@ -53,7 +82,7 @@ class TodosController < ApplicationController
     
     end
 
-    if params['todo_delete']
+    if params['delete_todo']
 
       params[:todos_checkbox].each do |check|
 
@@ -73,7 +102,7 @@ class TodosController < ApplicationController
 
   def details
   
-    @details_todo = Todo.last
+    @details_todo = Todo.find_by_id(params[:id])
 
     render :details
 
@@ -81,7 +110,7 @@ class TodosController < ApplicationController
 
   def updatetodo
 
-    t = Todo.last
+    t = Todo.find_by_id(params[:todo][:todo_id])
     t.todo_for = params[:todo][:todo_for]
     t.todo_category = params[:todo][:todo_category]
     t.todo_project = params[:todo][:todo_project]

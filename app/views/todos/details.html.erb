@@ -10,7 +10,7 @@
 
 <hr>
 
-<p>Add todo details</p>
+<p>Update details for To Do</p>
 
 
 
@@ -42,6 +42,7 @@
   
 
   <%= form_for @details_todo, :url => { :action => "updatetodo" } do |f| %>
+  <%= f.hidden_field :todo_id, :value => @details_todo.id %>
   <table style="width:600">
   <tr><td width:10%>Todo:</td><td width:40%><%= f.text_field :todo_item %></td>
       <td width:10%>Status:</td><td width:40%><%= f.text_field :todo_status, :value => (((@details_todo.todo_status.to_f)*100).to_i).to_s + "%" %></td></tr>
@@ -54,7 +55,7 @@
   <tr><td width:10%>Recurring:</td><td width:40%><%= f.check_box :todo_recurring %></td></tr>
   <tr><td width:10%>Frequency:</td><td width:40%><%= f.select( :todo_frequency, options_for_select([[''],['Daily'],['Week Days'],['Weekly'],['Fortnightly'],['Monthly'],['Yearly']],@details_todo.todo_frequency)) %></td>
       <td width:10%>End Date or Occurences:</td><td width:40%><%= f.text_field :todo_enddate %></td></tr>
-  <tr><td width:100%><%= f.submit "Update todo", class: "btn btn-primary" %></td></tr>
+  <tr><td width:100%><br><%= f.submit "Update todo", class: "btn btn-primary" %></td></tr>
   </table>
   <% end %>
 
