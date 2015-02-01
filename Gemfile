@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#specifying Ruby version to align with AWS
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
