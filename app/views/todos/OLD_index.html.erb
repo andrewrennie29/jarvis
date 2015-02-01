@@ -41,21 +41,11 @@
 
 <% end %>
 
-<%= form_tag("/todos/complete/", :method => "post") do %>
-
-<div class="span12">
-
-	<%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
-	<%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
-	
-
-</div> <!-- span12 -->
-
-<hr><br>
-
 <div class="span7">
 
 	<table class="table table-striped">
+
+		<%= form_tag("/todos/complete/", :method => "post") do %>
 
 		<h4>Today</h4>
 		
@@ -97,14 +87,17 @@
 	
 	<br>
 	
+	<%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
+	<%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
+	<% end %>
 
-
-</div> <!-- span7 -->
+</div> <!-- span6 -->
 
 <div class="span3 offset1">
 
 	<table class="table table-striped">
 
+		<%= form_tag("/todos/complete/", :method => "post") do %>
 
 		<h4>This Week</h4>
 		
@@ -152,64 +145,12 @@
 	</table>
 	
 	<br>
+	
+	<%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
+	<%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
+	<% end %>
 
 </div> <!-- span3 -->
-
-<div class="span3 offset1">
-
-	<table class="table table-striped">
-
-
-		<h4>Personal</h4>
-		
-		<% if @todo_personal.count == 0 %>
-
-			<tbody><tr>Nothing to do</tr></tbody>
-
-		<% else %>
-
-			<thead>
-	
-				<tr>
-					<th>Item</th>
-
-				</tr>
-
-			</thead>
-
-			<tbody>      
-
-				<% @todo_personal.each do |t| %>
-			
-	
-					<tr>	
-						<td>
-						<% if t.todo_complete == true %>
-          
-							<%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
-	
-						<% else %>
-
-							<%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
-
-						<% end %>
-						</td>
-
-					</tr>
-
-				<% end %>
-			
-			</tbody>
-
-		<% end %>
-
-	</table>
-	
-	<br>
-
-</div> <!-- span3 -->
-
-<% end %>
 
 </div> <!-- span12 -->
 
