@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 #specifying Ruby version to align with AWS
 ruby '2.1.5'
 
+#Puma required for AWS
+gem 'puma'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use mysql as the database for Active Record
