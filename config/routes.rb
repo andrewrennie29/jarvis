@@ -67,4 +67,11 @@ match 'todos/complete' => 'todos#complete', :via => :post
 match 'todos/details/:id' => 'todos#details', :via => [:get], :as => :details
 
 patch 'todos/updatetodo/' => 'todos#updatetodo', :via => :post
+
+match '/login' => 'sessions#new', :via => [:get], :as => :login
+
+patch '/login' => 'sessions#create', :via => :post
+
+match '/logout' => 'sessions#destroy', :via => [:get], :as => :logout
+
 end
