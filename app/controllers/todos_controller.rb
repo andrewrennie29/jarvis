@@ -9,7 +9,7 @@ class TodosController < ApplicationController
     @new_todo = Todo.new
     @todo_today = @todo_items.where("todos.todo_category<>'Personal' and (todo_urgence = 11 OR todo_deadline = curdate())").order("todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC")
     @todo_tomorrow = @todo_items.where("todos.todo_category<>'Personal' and todos.todo_deadline = curdate()+1")
-    @todo_week = @todo_items.where("todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) + 1 DAY), INTERVAL 1 WEEK)")
+    @todo_week = @todo_items.where("todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK)")
     @todo_personal = @todo_items.where("todos.todo_category='Personal' and (todos.todo_complete = false or todos.updated_at>=curdate())").order("todo_complete ASC, todo_item ASC")
     render :index
 
