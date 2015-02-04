@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204203124) do
+ActiveRecord::Schema.define(version: 20150204210303) do
 
   create_table "todos", force: true do |t|
     t.text     "todo_item"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150204203124) do
     t.string   "todo_user"
     t.date     "todo_enddate"
     t.time     "todo_deadlinetime"
+    t.string   "username"
   end
 
   create_table "users", force: true do |t|
