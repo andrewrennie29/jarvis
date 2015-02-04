@@ -14,10 +14,10 @@
 
 <% form_for User.new do |f| %>
 
-<%=f.label :Username %> <%=f.text_field :username %>
-<%=f.label :Email %> <%=f.text_field :email %>
-<%=f.label :Password %> <%=f.text_field :password %>
-<%=f.label :Confirm Password %> <%=f.text_field :confirm_password %>
+<%=f.label :username %> <%=f.text_field :username %>
+<%=f.label :email %> <%=f.text_field :email %>
+<%=f.label :password %> <%=f.text_field :password %>
+<%=f.label :confirm_password %> <%=f.text_field :confirm_password %>
 <%=f.submit "Sign Up" %>
 <% end %>
 
