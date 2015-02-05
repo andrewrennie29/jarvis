@@ -74,4 +74,6 @@ patch '/login' => 'sessions#create', :via => :post
 
 match '/logout' => 'sessions#destroy', :via => [:get], :as => :logout
 
+match '/users/new' => 'users#new', :via => [:get], :as => :signmeup
+
 end
