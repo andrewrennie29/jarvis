@@ -6,7 +6,7 @@
 
 <div class="span12">
 
-<h1>Shared Todo App</h1>
+<h1>Get Stuff Done</h1>
 
 <hr>
 
@@ -57,7 +57,7 @@
 <tr><td width:10%>Recurring:</td><td width:40%><%= f.check_box :todo_recurring %></td></tr>
   <tr><td width:10%>Frequency:</td><td width:40%><%= f.select( :todo_frequency, options_for_select([[''],['Daily'],['Week Days'],['Weekly'],['Fortnightly'],['Monthly'],['Yearly']],@details_todo.todo_frequency)) %></td>
       <td width:10%>End Date or Occurences:</td><td width:40%><%= f.text_field :todo_enddate %></td></tr>
-  <tr><td width:100%><br><%= f.submit "Update todo", class: "btn btn-primary" %></td></tr>
+  <tr><td width:100%><br><%= f.submit "Update To Do", class: "btn btn-primary" %></td></tr>
   </table>
   <% end %>
 
