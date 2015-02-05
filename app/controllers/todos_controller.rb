@@ -17,7 +17,7 @@ class TodosController < ApplicationController
 
   def add
 
-    todo = Todo.create(:todo_item => params[:todo][:todo_item])
+    todo = Todo.create(:todo_item => params[:todo][:todo_item], :user_id => session[:user_id])
     unless todo.valid?
       flash[:error] = todo.errors.full_messages.join("<br>").html_safe
     else
