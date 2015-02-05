@@ -7,10 +7,10 @@ class TodosController < ApplicationController
     Todo.where("todo_complete is true AND todo_deadline < curdate()").update_all todo_urgence: 0
     @todo_items = Todo.where("user_id = ?", session[:user_id])
     @new_todo = Todo.new
-    @todo_today = @todo_items.where("todos.todo_category<>'Personal' and (todo_urgence = 11 OR todo_deadline = curdate())").order("todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC")
+    @todo_today = @todo_items.where("todos.todo_category<>'Personal' and (todo_urgence >= 11 OR todo_deadline = curdate())").order("todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC")
     @todo_tomorrow = @todo_items.where("todos.todo_category<>'Personal' and todos.todo_deadline = curdate()+1")
     @todo_week = @todo_items.where("todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK)")
-    @todo_personal = @todo_items.where("todos.todo_category='Personal' and (todos.todo_complete = false or todos.updated_at>=curdate())").order("todo_complete ASC, todo_item ASC")
+    @todo_personal = @todo_items.where("todos.todo_category='Personal' and (todos.todo_complete = false or todos.updated_at>=curdate()-1)").order("todo_complete ASC, todo_item ASC")
     render :index
 
   end
@@ -111,6 +111,7 @@ class TodosController < ApplicationController
   def updatetodo
 
     t = Todo.find_by_id(params[:todo][:todo_id])
+    t.todo_item = params[:todo][:todo_item]
     t.todo_for = params[:todo][:todo_for]
     t.todo_category = params[:todo][:todo_category]
     t.todo_project = params[:todo][:todo_project]
