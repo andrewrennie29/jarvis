@@ -9,7 +9,11 @@ def create
 	@user = User.new(user_params)
 	if @user.save
 		flash[:notice] = "Sign up successful"
+
+		session[:user_id] = @user.id
+
 		redirect_to index_path
+
 	else
 		flash[:alert] = "#fail! Please try again."
 		redirect_to :back

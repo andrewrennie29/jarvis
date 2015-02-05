@@ -14,7 +14,7 @@ if @user
 
 	session[:user_id] = @user.id
 
-	redirect_to 'todos/index'
+	redirect_to index_path
 
 else
 
