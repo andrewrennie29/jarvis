@@ -13,7 +13,7 @@
 <%= form_for @new_todo, :url => { :action => "add" } do |f| %>
 
   <%= f.text_field :todo_item %>
-  <%= f.submit "Add todo", class: "btn btn-primary" %>
+  <%= f.submit "Add To Do", class: "btn btn-primary" %>
 
 <% end %>
 
@@ -52,6 +52,8 @@
 </div> <!-- span12 -->
 
 <hr><br>
+
+<div class="row">
 
 <div class="span7">
 
@@ -100,6 +102,8 @@
 
 
 </div> <!-- span7 -->
+
+<div class="row">
 
 <div class="span3 offset1">
 
@@ -155,6 +159,10 @@
 
 </div> <!-- span3 -->
 
+</div> <!-- row -->
+
+<div class="row">
+
 <div class="span3 offset1">
 
 	<table class="table table-striped">
@@ -208,6 +216,8 @@
 	<br>
 
 </div> <!-- span3 -->
+
+</div> <!-- row --> 
 
 <% end %>
 
