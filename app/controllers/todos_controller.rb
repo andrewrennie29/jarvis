@@ -10,7 +10,7 @@ class TodosController < ApplicationController
     @todo_today = @todo_items.where("todos.todo_category<>'Personal' and (todo_urgence >= 11 OR todo_deadline = curdate())").order("todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC")
     @todo_tomorrow = @todo_items.where("todos.todo_category<>'Personal' and todos.todo_deadline = curdate()+1")
     @todo_week = @todo_items.where("todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK)")
-    @todo_personal = @todo_items.where("todos.todo_category='Personal' and (todos.todo_complete = false or todos.updated_at>=curdate()-1)").order("todo_complete ASC, todo_item ASC")
+    @todo_personal = @todo_items.where("todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null)").order("todo_complete ASC, todo_item ASC")
     render :index
 
   end
@@ -102,7 +102,7 @@ class TodosController < ApplicationController
 
   def details
   
-    @details_todo = Todo.find_by_id(params[:id]).where('user_id=?' session[:user_id])
+    @details_todo = Todo.find_by_id(params[:id]).where("user_id = ?", session[:user_id])
 
     render :details
 
@@ -110,7 +110,7 @@ class TodosController < ApplicationController
 
   def updatetodo
 
-    t = Todo.find_by_id(params[:todo][:todo_id])
+    t = Todo.find_by_id(params[:todo][:todo_id]).where("user_id = ?", session[:user_id])
     t.todo_item = params[:todo][:todo_item]
     t.todo_for = params[:todo][:todo_for]
     t.todo_category = params[:todo][:todo_category]
