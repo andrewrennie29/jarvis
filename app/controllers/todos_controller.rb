@@ -102,7 +102,7 @@ class TodosController < ApplicationController
 
   def details
   
-    @details_todo = Todo.find_by_id(params[:id])
+    @details_todo = Todo.find_by_id(params[:id]).where('user_id=?' session[:user_id])
 
     render :details
 
