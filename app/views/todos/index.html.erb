@@ -64,6 +64,7 @@
 		<thead>
 	
 			<tr>
+				<th></th>
 				<th>Item</th>
 				<th>For</th>
 				<th>Deadline</th>
@@ -76,14 +77,16 @@
 			<% @todo_today.each do |t| %>
 				
 				<tr>	
+					
+					<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
 					<td>
 					<% if t.todo_complete == true %>
           
-						<%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+						<strike><%= t.todo_item %></strike>
 
 					<% else %>
 
-						<%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+						<%= link_to t.todo_item, details_path(t.id) %>
 
 					<% end %>
 					</td>
@@ -121,6 +124,7 @@
 			<thead>
 	
 				<tr>
+					<th></th>
 					<th>Item</th>
 
 				</tr>
@@ -133,14 +137,15 @@
 			
 	
 					<tr>	
+						<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
 						<td>
 						<% if t.todo_complete == true %>
           
-							<%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+							<strike><%= t.todo_item %></strike>
 	
 						<% else %>
 
-							<%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+							<%= link_to t.todo_item, details_path(t.id) %>
 
 						<% end %>
 						</td>
@@ -179,6 +184,7 @@
 			<thead>
 	
 				<tr>
+					<th></th>
 					<th>Item</th>
 
 				</tr>
@@ -187,18 +193,19 @@
 
 			<tbody>      
 
-				<% @todo_personal.each do |t| %>
+				<% @todo_week.each do |t| %>
 			
 	
 					<tr>	
+						<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
 						<td>
 						<% if t.todo_complete == true %>
           
-							<%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+							<strike><%= t.todo_item %></strike>
 	
 						<% else %>
 
-							<%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+							<%= link_to t.todo_item, details_path(t.id) %>
 
 						<% end %>
 						</td>
