@@ -174,7 +174,7 @@ class TodosController < ApplicationController
     unless t.valid?
       flash[:error] = t.errors.full_messages.join("<br>").html_safe
     else
-      flash[:success] = "Todo added successfully"
+      flash[:success] = "To Do Details Updated"
     end
     redirect_to index_path
 
