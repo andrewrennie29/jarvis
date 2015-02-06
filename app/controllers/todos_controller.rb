@@ -101,16 +101,25 @@ class TodosController < ApplicationController
   end
 
   def details
-  
-    @details_todo = Todo.find_by_id(params[:id]).where("user_id = ?", session[:user_id])
+    
+    if Todo.allowview(params[:id], session[:user_id]).nil?
 
-    render :details
+      flash[:error]="Invalid To Do"
+      redirect_to index_path
+
+    else	
+
+      @details_todo = Todo.find_by_id(params[:id])
+
+      render :details
+
+    end
 
   end
 
   def updatetodo
 
-    t = Todo.find_by_id(params[:todo][:todo_id]).where("user_id = ?", session[:user_id])
+    t = Todo.find_by_id(params[:todo][:todo_id])
     t.todo_item = params[:todo][:todo_item]
     t.todo_for = params[:todo][:todo_for]
     t.todo_category = params[:todo][:todo_category]
