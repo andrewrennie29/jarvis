@@ -10,7 +10,7 @@ def create
 
 if @user
 
-	flash[:notice] = "Login Successful!"
+	flash[:success] = @user.username + " let's get some stuff done!"
 
 	session[:user_id] = @user.id
 
