@@ -41,6 +41,18 @@
 
 <% end %>
 
+<%= form_tag("/todos/complete/", :method => "post") do %>
+
+<div class="span12">
+
+	<%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
+	<%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
+	
+
+</div> <!-- span12 -->
+
+<hr><br>
+
 <div class="span12">
 
 	<table class="table table-striped">
@@ -63,8 +75,17 @@
 			<% @project_todos.each do |t| %>
 				
 				<tr>	
-					<td>Checkbox Here</td>
-					<td><%= link_to t.todo_item, details_path(t.id) %></td>
+					<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
+					<td>
+						<% if t.todo_complete == true %>
+          
+							<strike><%= t.todo_item %></strike>
+	
+						<% else %>
+						
+							<%= link_to t.todo_item, details_path(t.id) %>
+						<% end %>
+					</td>
 					<td><%= t.todo_deadline %></td>
 					<td><%= t.todo_importance %></td>
 					<td><%= t.todo_timeremaining %></td>
@@ -78,6 +99,8 @@
 	</table>	
 
 </div> <!-- span12 -->
+
+<% end %>
 
 </div> <!-- span12 -->
 

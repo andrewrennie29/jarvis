@@ -104,7 +104,7 @@ class TodosController < ApplicationController
     
     end
 
-    redirect_to index_path
+    redirect_to :back
 
   end
 
