@@ -76,4 +76,10 @@ match '/logout' => 'sessions#destroy', :via => [:get], :as => :logout
 
 match '/users/new' => 'users#new', :via => [:get], :as => :signmeup
 
+match 'projects/index' => 'projects#index', :via => [:get], :as => :projects
+
+match 'projects/add' => 'projects#add', :via => :post
+
+match 'projects/details/:project' => 'projects#details', :via => [:get], :as => :projectdetails
+
 end

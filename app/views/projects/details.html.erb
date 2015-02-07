@@ -1,0 +1,86 @@
+<title>Shared Todo App</title>
+
+<div class="container">
+
+<div class="row">
+
+<div class="span12">
+
+<h1>Projects</h1>
+
+<hr>
+
+<%= form_for @new_todo, :url => { :action => "add" } do |f| %>
+
+  <%= f.text_field :todo_item %>
+  <%= f.submit "Add To Do", class: "btn btn-primary" %>
+
+<% end %>
+
+<% if !flash[:error].nil? %>
+
+  <div class="alert alert-error">
+
+    <button type="button" class="close" data-dismiss="alert" >x</button>
+
+    <strong><%= flash[:error] %></strong>
+
+  </div>
+
+<% end %>
+
+<% if flash[:success] %>
+
+  <div class="alert alert-success">
+
+     <button type="button" class="close" data-dismiss="alert" >x</button>
+
+    <strong><%= flash[:success] %></strong>
+
+  </div>
+
+<% end %>
+
+<div class="span12">
+
+	<table class="table table-striped">
+		
+		<thead>
+	
+			<tr>
+				<th></th>
+				<th>To Do Item</th>
+				<th>Deadline</th>
+				<th>Importance</th>
+				<th>Hours Still Required</th>
+				<th>% Completion</th>
+			</tr>
+
+		</thead>
+
+		<tbody>      
+
+			<% @project_todos.each do |t| %>
+				
+				<tr>	
+					<td>Checkbox Here</td>
+					<td><%= link_to t.todo_item, details_path(t.id) %></td>
+					<td><%= t.todo_deadline %></td>
+					<td><%= t.todo_importance %></td>
+					<td><%= t.todo_timeremaining %></td>
+					<td><%= (100-(t.todo_timeremaining*100/t.todo_timerequired)).to_i %>%</td>
+
+				</tr>
+
+			<% end %>
+
+		</tbody>
+	</table>	
+
+</div> <!-- span12 -->
+
+</div> <!-- span12 -->
+
+</div> <!-- row -->
+
+</div> <!-- container -->
