@@ -2,6 +2,12 @@ class TodosController < ApplicationController
   
   def index
     
+    if session[:user_id].nil?
+
+      redirect_to '/'
+
+    end
+    
     Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false")
     Todo.where("todo_urgence < 0").update_all todo_urgence: 11
     Todo.where("todo_complete is true AND todo_deadline < curdate()").update_all todo_urgence: 0
