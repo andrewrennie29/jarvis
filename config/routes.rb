@@ -80,6 +80,6 @@ match 'projects/index' => 'projects#index', :via => [:get], :as => :projects
 
 match 'projects/add' => 'projects#add', :via => :post
 
-match 'projects/details/:project' => 'projects#details', :via => [:get], :as => :projectdetails
+match 'projects/details/:project' => 'projects#projectdetails', :via => [:get], :as => :projectdetails
 
 end

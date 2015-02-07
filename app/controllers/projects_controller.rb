@@ -92,7 +92,7 @@ class ProjectsController < ApplicationController
 
   end
 
-  def details
+  def projectdetails
     
     @project_todos = Todo.where("todo_project = ? AND user_id = ?", params[:project],session[:user_id]).order("todo_deadline ASC, todo_item ASC")
     @new_todo = Todo.new
