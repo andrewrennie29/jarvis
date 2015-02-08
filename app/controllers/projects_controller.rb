@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
 
     else
 
-      @projects = Todo.select("todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete is null,1,0)) as todo_item_count, sum(if(todo_complete=true,0,todo_timeremaining)) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(todo_timerequired),0) as percentage_complete").where("todo_project is not null and todo_project !='' AND sum(if(todo_complete = true,0,1))>0	 AND user_id = ?", session[:user_id]).group("todo_project")
+      @projects = Todo.select("todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete is null,1,0)) as todo_item_count, sum(if(todo_complete=true,0,todo_timeremaining)) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(todo_timerequired),0) as percentage_complete").where("todo_project is not null and todo_project !='' AND user_id = ?", session[:user_id]).group("todo_project")
       @new_todo = Todo.new
       render :index
 
