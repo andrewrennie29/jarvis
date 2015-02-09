@@ -10,8 +10,9 @@
 
 <hr>
 
-<%= form_for @new_todo, :url => { :action => "add" } do |f| %>
+<%= form_for @new_todo, :url => { :action => "add", :controller => "todos" } do |f| %>
 
+  <%= f.hidden_field :todo_project, :value => params[:project] %>
   <%= f.text_field :todo_item %>
   <%= f.submit "Add To Do", class: "btn btn-primary" %>
 

@@ -25,7 +25,7 @@ class TodosController < ApplicationController
 
   def add
 
-    todo = Todo.create(:todo_item => params[:todo][:todo_item], :user_id => session[:user_id])
+    todo = Todo.create(:todo_item => params[:todo][:todo_item], :user_id => session[:user_id], :todo_project => params[:todo][:todo_project], :todo_deadline => Date.today.to_s )
     unless todo.valid?
       flash[:error] = todo.errors.full_messages.join("<br>").html_safe
     else
@@ -57,6 +57,7 @@ class TodosController < ApplicationController
 	if t.todo_recurring and !t.todo_complete
 	
 	  recur=Todo.new
+	  recur.user_id=t.user_id
 	  recur.todo_item=t.todo_item
 	  recur.todo_for=t.todo_for
 	  recur.todo_category=t.todo_category
@@ -76,7 +77,7 @@ class TodosController < ApplicationController
             when 'Yearly'      then (t.todo_deadline).to_time.advance(:years => 1).to_date
           end
           recur.todo_timeremaining = (1-recur.todo_status)*recur.todo_timerequired
-	  if !recur.todo_enddate.nil? and recur.todo_enddate > recur.todo_deadline
+	  if !recur.todo_enddate.nil? || recur.todo_enddate > recur.todo_deadline
             recur.save
           end
 	

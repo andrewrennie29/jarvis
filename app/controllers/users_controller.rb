@@ -9,6 +9,8 @@ def create
 	@user = User.new(user_params)
 	if @user.save
 		flash[:notice] = "Sign up successful"
+		
+		#UserMailer.welcome_email(@user).deliver
 
 		session[:user_id] = @user.id
 
