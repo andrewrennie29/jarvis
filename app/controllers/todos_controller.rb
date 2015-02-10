@@ -7,7 +7,8 @@ class TodosController < ApplicationController
       redirect_to '/'
 
     else
-    
+      
+      session[:return_route] = index_path
       Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false")
       Todo.where("todo_urgence < 0").update_all todo_urgence: 11
       Todo.where("todo_complete is true AND todo_deadline < curdate()").update_all todo_urgence: 0
@@ -77,7 +78,7 @@ class TodosController < ApplicationController
             when 'Yearly'      then (t.todo_deadline).to_time.advance(:years => 1).to_date
           end
           recur.todo_timeremaining = (1-recur.todo_status)*recur.todo_timerequired
-	  if !recur.todo_enddate.nil? || recur.todo_enddate > recur.todo_deadline
+	  if recur.todo_enddate.nil? || recur.todo_enddate > recur.todo_deadline
             recur.save
           end
 	
@@ -105,7 +106,7 @@ class TodosController < ApplicationController
     
     end
 
-    redirect_to :back
+    redirect_to session[:return_route]
 
   end
 
@@ -185,7 +186,7 @@ class TodosController < ApplicationController
     else
       flash[:success] = "To Do Details Updated"
     end
-    redirect_to :back
+    redirect_to session[:return_route]
 
   end
 
