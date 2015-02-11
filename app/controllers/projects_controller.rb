@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
 
   def projectdetails
     
-    @project_todos = Todo.where("todo_project = ? AND user_id = ?", params[:project],session[:user_id]).order("todo_deadline ASC, todo_item ASC")
+    @project_todos = Todo.where("todo_project = ? AND user_id = ?", params[:project],session[:user_id]).order("todo_complete ASC, todo_deadline ASC, todo_item ASC")
     @new_todo = Todo.new
 
     if @project_todos.count == 0
