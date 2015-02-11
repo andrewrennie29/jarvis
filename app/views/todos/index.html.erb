@@ -55,7 +55,7 @@
 
 <div class="row">
 
-<div class="span7">
+<div class="span8">
 
 	<table class="table table-striped">
 
@@ -65,8 +65,10 @@
 	
 			<tr>
 				<th></th>
+				<th>Status</th>
 				<th>Item</th>
 				<th>For</th>
+				<th>Project</th>
 				<th>Deadline</th>
 			</tr>
 
@@ -79,6 +81,7 @@
 				<tr>	
 					
 					<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
+					<td></td>
 					<td>
 					<% if t.todo_complete == true %>
           
@@ -91,6 +94,7 @@
 					<% end %>
 					</td>
 					<td><%= t.todo_for %></td>
+					<td><%= link_to t.todo_project, projectdetails_path(t.todo_project) %></td>
 					<td><%= t.todo_deadline %></td>
 
 				</tr>

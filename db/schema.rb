@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205064651) do
+ActiveRecord::Schema.define(version: 20150211215634) do
 
   create_table "todos", force: true do |t|
     t.text     "todo_item"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20150205064651) do
     t.date     "todo_enddate"
     t.time     "todo_deadlinetime"
     t.integer  "user_id"
+    t.date     "assigneddate"
+    t.boolean  "latestrecur"
   end
 
   create_table "users", force: true do |t|
@@ -43,6 +45,10 @@ ActiveRecord::Schema.define(version: 20150205064651) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.time     "startwork"
+    t.time     "endwork"
+    t.time     "lunchstart"
+    t.decimal  "lunchlength",   precision: 10, scale: 4
   end
 
 end
