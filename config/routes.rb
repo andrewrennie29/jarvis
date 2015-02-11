@@ -82,8 +82,8 @@ match 'projects/add' => 'todos#add', :via => :post
 
 match 'projects/details/:project' => 'projects#projectdetails', :via => [:get], :as => :projectdetails
 
-match 'users/admin' => 'users#admin', :via => [:get], :as => :admin
+match 'admin/index' => 'admin#index', :via => [:get], :as => :useradmin
 
-patch 'users/update/' => 'users#update', :via => :post
+patch 'admin/update/' => 'admin#update', :via => :post
 
 end

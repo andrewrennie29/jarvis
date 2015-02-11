@@ -12,17 +12,22 @@
   <div class="navbar-header">
     <a class="brand" href="/todos/index"> Get Stuff Done</a>
   </div>
+<% if session[:user_id].nil? %>
 
+<% else %>
   <div>
   
     <ul class="nav navbar-nav">
     
 	<li class="active"><a href="/projects/index">Projects</a></li>
+        <li class="active"><a href="#">Admin</a></li>
 	<li class="active"><a href="/logout">Logout</a></li>
 
     </ul>
 
   </div>
+
+<% end %>
 
 </nav>
 <%= yield %>

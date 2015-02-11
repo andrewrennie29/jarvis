@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
 
-def show
-
-render :admin
-
-end
-
 def new
 
 end
@@ -32,27 +26,6 @@ end
 def user_params
 
 	params.require(:user).permit(:username, :email, :password, :confirm_password)
-
-end
-
-def admin
-
-if session[:user_id].nil?
-
-      redirect_to '/'
-
-    else
-
-      @user=User.find_by_id(session[user_id])
-      render :admin
-
-    end
-
-end
-
-def update
-
-  @user = User.find_by_id(session[:user_id])
 
 end
 
