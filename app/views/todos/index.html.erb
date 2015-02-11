@@ -94,7 +94,14 @@
 					<% end %>
 					</td>
 					<td><%= t.todo_for %></td>
-					<td><%= link_to t.todo_project, projectdetails_path(t.todo_project) %></td>
+					<td>
+						<% if t.todo_project == '' || t.todo_project.nil? %>
+						
+						<% else %>
+
+							<%= link_to t.todo_project, projectdetails_path(t.todo_project) %>
+							<% end %>
+						</td>
 					<td><%= t.todo_deadline %></td>
 
 				</tr>
