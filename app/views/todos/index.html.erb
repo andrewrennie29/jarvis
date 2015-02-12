@@ -55,8 +55,9 @@
 
 <div class="row">
 
-<div class="span8">
+  <div class="span8">
 
+    <div class="row">
 	<table class="table table-striped">
 
 		<h4>Today</h4>
@@ -110,76 +111,70 @@
 
 		</tbody>
 	</table>
-	
-	<br>
-	
 
+    </div> <!-- row -->
 
-</div> <!-- span7 -->
-
-<div class="row">
-
-<div class="span3 offset1">
+    <div class="row">
 
 	<table class="table table-striped">
 
-
 		<h4>This Week</h4>
 		
-		<% if @todo_week.count == 0 %>
-
-			<tbody><tr>Nothing to do</tr></tbody>
-
-		<% else %>
-
-			<thead>
+		<thead>
 	
-				<tr>
-					<th></th>
-					<th>Item</th>
+			<tr>
+				<th></th>
+				<th>Status</th>
+				<th>Item</th>
+				<th>For</th>
+				<th>Project</th>
+				<th>Deadline</th>
+			</tr>
+
+		</thead>
+
+		<tbody>      
+
+			<% @todo_week.each do |t| %>
+				
+				<tr>	
+					
+					<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
+					<td></td>
+					<td>
+					<% if t.todo_complete == true %>
+          
+						<strike><%= t.todo_item %></strike>
+
+					<% else %>
+
+						<%= link_to t.todo_item, details_path(t.id) %>
+
+					<% end %>
+					</td>
+					<td><%= t.todo_for %></td>
+					<td>
+						<% if t.todo_project == '' || t.todo_project.nil? %>
+						
+						<% else %>
+
+							<%= link_to t.todo_project, projectdetails_path(t.todo_project) %>
+							<% end %>
+						</td>
+					<td><%= t.todo_deadline %></td>
 
 				</tr>
 
-			</thead>
+			<% end %>
 
-			<tbody>      
-
-				<% @todo_week.each do |t| %>
-			
-	
-					<tr>	
-						<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
-						<td>
-						<% if t.todo_complete == true %>
-          
-							<strike><%= t.todo_item %></strike>
-	
-						<% else %>
-
-							<%= link_to t.todo_item, details_path(t.id) %>
-
-						<% end %>
-						</td>
-
-					</tr>
-
-				<% end %>
-			
-			</tbody>
-
-		<% end %>
-
+		</tbody>
 	</table>
 	
-	<br>
+    </div> <!-- row -->
 
-</div> <!-- span3 -->
+  </div> <!-- col-md-8 -->
 
-</div> <!-- row -->
-
-<div class="row">
-
-<div class="span3 offset1">
+  <div class="span3 offset1">
 
 	<table class="table table-striped">
 
@@ -230,10 +225,8 @@
 		<% end %>
 
 	</table>
-	
-	<br>
 
-</div> <!-- span3 -->
+  </div> <!-- col-md-3 -->
 
 </div> <!-- row --> 
 

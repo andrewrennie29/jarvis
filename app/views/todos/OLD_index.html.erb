@@ -6,14 +6,14 @@
 
 <div class="span12">
 
-<h1>Shared Todo App</h1>
+<h1>Get Stuff Done</h1>
 
 <hr>
 
 <%= form_for @new_todo, :url => { :action => "add" } do |f| %>
 
   <%= f.text_field :todo_item %>
-  <%= f.submit "Add todo", class: "btn btn-primary" %>
+  <%= f.submit "Add To Do", class: "btn btn-primary" %>
 
 <% end %>
 
@@ -23,7 +23,7 @@
 
     <button type="button" class="close" data-dismiss="alert" >x</button>
 
-    <strong><%= flash[:error] %></strong>
+    <%= flash[:error] %>
 
   </div>
 
@@ -35,25 +35,38 @@
 
      <button type="button" class="close" data-dismiss="alert" >x</button>
 
-    <strong><%= flash[:success] %></strong>
+    <%= flash[:success] %>
 
   </div>
 
 <% end %>
 
-<div class="span7">
+<%= form_tag("/todos/complete/", :method => "post") do %>
+
+<div class="span12">
+
+	<%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
+	<%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
+	
+
+</div> <!-- span12 -->
+
+<hr><br>
+
+<div class="span8">
 
 	<table class="table table-striped">
-
-		<%= form_tag("/todos/complete/", :method => "post") do %>
 
 		<h4>Today</h4>
 		
 		<thead>
 	
 			<tr>
+				<th></th>
+				<th>Status</th>
 				<th>Item</th>
 				<th>For</th>
+				<th>Project</th>
 				<th>Deadline</th>
 			</tr>
 
@@ -64,18 +77,29 @@
 			<% @todo_today.each do |t| %>
 				
 				<tr>	
+					
+					<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
+					<td></td>
 					<td>
 					<% if t.todo_complete == true %>
           
-						<%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+						<strike><%= t.todo_item %></strike>
 
 					<% else %>
 
-						<%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+						<%= link_to t.todo_item, details_path(t.id) %>
 
 					<% end %>
 					</td>
 					<td><%= t.todo_for %></td>
+					<td>
+						<% if t.todo_project == '' || t.todo_project.nil? %>
+						
+						<% else %>
+
+							<%= link_to t.todo_project, projectdetails_path(t.todo_project) %>
+							<% end %>
+						</td>
 					<td><%= t.todo_deadline %></td>
 
 				</tr>
@@ -85,23 +109,76 @@
 		</tbody>
 	</table>
 	
-	<br>
-	
-	<%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
-	<%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
-	<% end %>
+</div> <!-- span8 -->
 
-</div> <!-- span6 -->
+<div class="span8">
+
+	<table class="table table-striped">
+
+		<h4>This Week</h4>
+		
+		<thead>
+	
+			<tr>
+				<th></th>
+				<th>Status</th>
+				<th>Item</th>
+				<th>For</th>
+				<th>Project</th>
+				<th>Deadline</th>
+			</tr>
+
+		</thead>
+
+		<tbody>      
+
+			<% @todo_week.each do |t| %>
+				
+				<tr>	
+					
+					<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
+					<td></td>
+					<td>
+					<% if t.todo_complete == true %>
+          
+						<strike><%= t.todo_item %></strike>
+
+					<% else %>
+
+						<%= link_to t.todo_item, details_path(t.id) %>
+
+					<% end %>
+					</td>
+					<td><%= t.todo_for %></td>
+					<td>
+						<% if t.todo_project == '' || t.todo_project.nil? %>
+						
+						<% else %>
+
+							<%= link_to t.todo_project, projectdetails_path(t.todo_project) %>
+							<% end %>
+						</td>
+					<td><%= t.todo_deadline %></td>
+
+				</tr>
+
+			<% end %>
+
+		</tbody>
+	</table>
+	
+</div> <!-- span8 -->
+
+<div class="row">
 
 <div class="span3 offset1">
 
 	<table class="table table-striped">
 
-		<%= form_tag("/todos/complete/", :method => "post") do %>
 
-		<h4>This Week</h4>
+		<h4>Personal</h4>
 		
-		<% if @todo_week.count == 0 %>
+		<% if @todo_personal.count == 0 %>
 
 			<tbody><tr>Nothing to do</tr></tbody>
 
@@ -110,6 +187,7 @@
 			<thead>
 	
 				<tr>
+					<th></th>
 					<th>Item</th>
 
 				</tr>
@@ -118,18 +196,19 @@
 
 			<tbody>      
 
-				<% @todo_week.each do |t| %>
+				<% @todo_personal.each do |t| %>
 			
 	
 					<tr>	
+						<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
 						<td>
 						<% if t.todo_complete == true %>
           
-							<%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+							<strike><%= t.todo_item %></strike>
 	
 						<% else %>
 
-							<%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+							<%= link_to t.todo_item, details_path(t.id) %>
 
 						<% end %>
 						</td>
@@ -145,12 +224,12 @@
 	</table>
 	
 	<br>
-	
-	<%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
-	<%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
-	<% end %>
 
 </div> <!-- span3 -->
+
+</div> <!-- row --> 
+
+<% end %>
 
 </div> <!-- span12 -->
 
