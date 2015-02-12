@@ -55,7 +55,7 @@
 
 <div class="row">
 
-  <div class="span8">
+  <div class="span10">
 
     <div class="row">
 	<table class="table table-striped">
@@ -65,12 +65,11 @@
 		<thead>
 	
 			<tr>
-				<th></th>
-				<th>Status</th>
-				<th>Item</th>
-				<th>For</th>
-				<th>Project</th>
-				<th>Deadline</th>
+				<th class="span1">Status</th>
+				<th class="span3">Item</th>
+				<th class="span1">For</th>
+				<th class="span2">Project</th>
+				<th class="span1">Deadline</th>
 			</tr>
 
 		</thead>
@@ -81,8 +80,7 @@
 				
 				<tr>	
 					
-					<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
-					<td></td>
+					<td><%= check_box_tag "todos_checkbox[]",t.id %> <%= text_field_tag :todo_status, (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'input-supermini' %></td>
 					<td>
 					<% if t.todo_complete == true %>
           
@@ -123,12 +121,11 @@
 		<thead>
 	
 			<tr>
-				<th></th>
-				<th>Status</th>
-				<th>Item</th>
-				<th>For</th>
-				<th>Project</th>
-				<th>Deadline</th>
+				<th class="span1">Status</th>
+				<th class="span3">Item</th>
+				<th class="span1">For</th>
+				<th class="span2">Project</th>
+				<th class="span1">Deadline</th>
 			</tr>
 
 		</thead>
@@ -139,8 +136,7 @@
 				
 				<tr>	
 					
-					<td><%= check_box_tag "todos_checkbox[]",t.id %></td>
-					<td></td>
+					<td><%= check_box_tag "todos_checkbox[]",t.id %> <%= text_field_tag :todo_status, (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'input-supermini' %></td>
 					<td>
 					<% if t.todo_complete == true %>
           
@@ -174,7 +170,7 @@
 
   </div> <!-- col-md-8 -->
 
-  <div class="span3 offset1">
+  <div class="span2">
 
 	<table class="table table-striped">
 
