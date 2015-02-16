@@ -49,6 +49,8 @@ class TodosController < ApplicationController
 
     if params['complete_todo']
 
+      unless params[:todos_checkbox].nil?
+
       params[:todos_checkbox].each do |check|
 
         todo_id = check
@@ -90,13 +92,23 @@ class TodosController < ApplicationController
 
       end
 
-      params[:todos_status].each do |key, value|
+      end
+
+      status=cleanstatus(params[:todos_status])
+
+      status.each do |s|
 	
-	todo_id = value
+	todo_id = s[0]
+	todo_status= (s[1].delete('%').to_f/100)
 
 	t=Todo.find_by_id(todo_id)
 	
-	
+	unless (t.todo_status).to_f == todo_status
+        
+          t.todo_status = todo_status
+          t.save
+
+        end
 
       end
 
@@ -207,19 +219,15 @@ class TodosController < ApplicationController
 
     redirect_to index_path
   end
+  
+  def cleanstatus(hash)
 
-  def formathash(hash)
+    h = hash.to_a
+    i = h[0]
+    s = h[1]
+    m=i[1].zip(s[1])
 
-    output = Hash.new
-    
-    hash.each do |key, value|
-    
-      output[key] = value
-    
-    end
-
-    output
-
+    output = m
   end
 
 end
