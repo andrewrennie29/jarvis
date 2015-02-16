@@ -80,7 +80,7 @@
 				
 				<tr>	
 					
-					<td><%= check_box_tag "todos_checkbox[]",t.id %> <%= text_field_tag :todo_status, (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'input-supermini' %></td>
+					<td><%= check_box_tag "todos_checkbox[]",t.id %> <%= hidden_field_tag "todos_status[:id][]", t.id %><%= text_field_tag "todos_status[:status][]", (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'input-supermini' %></td>
 					<td>
 					<% if t.todo_complete == true %>
           
@@ -136,7 +136,7 @@
 				
 				<tr>	
 					
-					<td><%= check_box_tag "todos_checkbox[]",t.id %> <%= text_field_tag :todo_status, (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'input-supermini' %></td>
+					<td><%= check_box_tag "todos_checkbox[]",t.id %> <%= hidden_field_tag "todos_status[:id][]", t.id %><%= text_field_tag "todos_status[:status][]", (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'input-supermini' %></td>
 					<td>
 					<% if t.todo_complete == true %>
           

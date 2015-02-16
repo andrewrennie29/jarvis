@@ -10,8 +10,8 @@ class TodosController < ApplicationController
       
       session[:return_route] = index_path
       Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false")
-      Todo.where("todo_urgence < 0").update_all todo_urgence: 11
-      Todo.where("todo_complete is true AND todo_deadline < curdate()").update_all todo_urgence: 0
+      Todo.where("todo_urgence < 0 and user_id = ?", session[:user_id]).update_all todo_urgence: 11
+      Todo.where("todo_complete is true AND todo_deadline < curdate() and user_id = ?", session[:user_id]).update_all todo_urgence: 0
       @todo_items = Todo.where("user_id = ?", session[:user_id])
       @new_todo = Todo.new
       @todo_today = @todo_items.where("todos.todo_category<>'Personal' and (todo_urgence >= 11 OR todo_deadline = curdate())").order("todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC")
@@ -54,7 +54,7 @@ class TodosController < ApplicationController
         todo_id = check
 
         t=Todo.find_by_id(todo_id)
-
+	
 	if t.todo_recurring and !t.todo_complete
 	
 	  recur=Todo.new
@@ -89,7 +89,17 @@ class TodosController < ApplicationController
         t.save
 
       end
-    
+
+      params[:todos_status].each do |key, value|
+	
+	todo_id = value
+
+	t=Todo.find_by_id(todo_id)
+	
+	
+
+      end
+
     end
 
     if params['delete_todo']
@@ -197,4 +207,19 @@ class TodosController < ApplicationController
 
     redirect_to index_path
   end
+
+  def formathash(hash)
+
+    output = Hash.new
+    
+    hash.each do |key, value|
+    
+      output[key] = value
+    
+    end
+
+    output
+
+  end
+
 end
