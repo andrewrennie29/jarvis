@@ -48,7 +48,7 @@
 
 <div class="span8">
 
-	<%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
+	<%= submit_tag("Update", :class=>"btn btn-success", :name=>"complete_todo") %>
 	<%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
 
 
@@ -56,19 +56,17 @@
 
 <hr><br>
 
-<div class="span12">
-
 	<table class="table table-striped">
 		
 		<thead>
 	
 			<tr>
-				<th>Status</th>
-				<th>To Do Item</th>
-				<th>Deadline</th>
-				<th>Importance</th>
-				<th>Hours Still Required</th>
-				<th>% Completion</th>
+				<th class="span2">Status</th>
+				<th class="span3">To Do Item</th>
+				<th class="span2">Deadline</th>
+				<th class="span1">Importance</th>
+				<th class="span1">Hours Still Required</th>
+				<th class="span1">% Completion</th>
 			</tr>
 
 		</thead>
@@ -100,8 +98,6 @@
 
 		</tbody>
 	</table>	
-
-</div> <!-- span12 -->
 
 <% end %>
 
