@@ -81,7 +81,9 @@ class TodosController < ApplicationController
           end
           recur.todo_timeremaining = (1-recur.todo_status)*recur.todo_timerequired
 	  if recur.todo_enddate.nil? || recur.todo_enddate > recur.todo_deadline
-            recur.save
+            	t.latestrecur=false
+		recur.latestrecur=true
+		recur.save
           end
 	
 	end
