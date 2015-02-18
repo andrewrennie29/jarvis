@@ -18,20 +18,20 @@ end
 
 def updateuser
 
-  u=User.find_by_id(session[:user_id]
+  #u=User.find_by_id(session[:user_id]
 
-  u.username= params[:user][:username]
-  u.email=params[:user][:email]
-  u.startwork= params[:user][:startwork]
-  u.endwork= params[:user][:endwork]
-  u.lunchstart= params[:user][:lunchstart]
-  u.lunchlength= params[:user][:lunchlength]
-  u.dailyemails=params[:user][:dailyemails]
-  u.save
+  #u.username= params[:user][:username]
+  #u.email=params[:user][:email]
+  #u.startwork= params[:user][:startwork]
+  #u.endwork= params[:user][:endwork]
+  #u.lunchstart= params[:user][:lunchstart]
+  #u.lunchlength= params[:user][:lunchlength]
+  #u.dailyemails=params[:user][:dailyemails]
+  #u.save
 
-  flash[:success] = "Your details have been updated."
+  #flash[:success] = "Your details have been updated."
 
-  redirect_to useradmin_path
+  #redirect_to useradmin_path
 
 end
 
