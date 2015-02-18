@@ -84,6 +84,6 @@ match 'projects/details/:project' => 'projects#projectdetails', :via => [:get], 
 
 match 'admin/index' => 'admin#index', :via => [:get], :as => :useradmin
 
-patch 'admin/update/' => 'admin#update', :via => :post
+patch 'admin/updateuser/' => 'admin#updateuser', :via => :post
 
 end
