@@ -108,6 +108,7 @@ class TodosController < ApplicationController
 	unless (t.todo_status).to_f == todo_status
         
           t.todo_status = todo_status
+	  t.todo_timeremaining=(1-t.todo_status)*t.todo_timerequired
           t.save
 
         end
