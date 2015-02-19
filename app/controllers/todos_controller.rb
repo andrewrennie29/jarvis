@@ -9,7 +9,7 @@ class TodosController < ApplicationController
     else
       
       session[:return_route] = index_path
-      Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false")
+      Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null")
       Todo.where("todo_urgence < 0 and user_id = ?", session[:user_id]).update_all todo_urgence: 11
       Todo.where("todo_complete is true AND todo_deadline < curdate() and user_id = ?", session[:user_id]).update_all todo_urgence: 0
       @todo_items = Todo.where("user_id = ?", session[:user_id])
