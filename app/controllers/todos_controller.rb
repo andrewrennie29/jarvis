@@ -11,6 +11,7 @@ class TodosController < ApplicationController
       session[:return_route] = index_path
       Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null")
       Todo.where("todo_urgence < 0 and user_id = ?", session[:user_id]).update_all todo_urgence: 11
+      Todo.where("todo_complete is null").update_all todo_complete: false
       Todo.where("todo_complete is true AND todo_deadline < curdate() and user_id = ?", session[:user_id]).update_all todo_urgence: 0
       @todo_items = Todo.where("user_id = ?", session[:user_id])
       @new_todo = Todo.new
@@ -26,7 +27,7 @@ class TodosController < ApplicationController
 
   def add
 
-    todo = Todo.create(:todo_item => params[:todo][:todo_item], :user_id => session[:user_id], :todo_project => params[:todo][:todo_project], :todo_deadline => Date.today.to_s )
+    todo = Todo.create(:todo_item => params[:todo][:todo_item], :user_id => session[:user_id], :todo_project => params[:todo][:todo_project], :todo_deadline => Date.today.to_s, :todo_complete => false)
     unless todo.valid?
       flash[:error] = todo.errors.full_messages.join("<br>").html_safe
     else
