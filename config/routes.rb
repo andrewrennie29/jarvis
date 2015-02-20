@@ -60,7 +60,7 @@ match 'todos/index' => 'todos#index', :via => [:get], :as => :index
 
 match 'todos/add' => 'todos#add', :via => :post
 
-match 'todos/delete' => 'todos#delete', :via => [:get], :as => :delete
+match 'todos/delete/:id' => 'todos#delete', :via => [:get], :as => :delete
 
 match 'todos/complete' => 'todos#complete', :via => :post
 

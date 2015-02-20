@@ -38,10 +38,19 @@ class TodosController < ApplicationController
   end
 
   def delete
+    
+    if Todo.allowview(params[:id], session[:user_id]).nil?
 
-    t=Todo.last
-    if !t.nil? 
+      flash[:error]="Invalid To Do"
+      redirect_to index_path
+
+    else	
+
+      t = Todo.find_by_id(params[:id])
       t.delete
+
+      redirect_to session[:return_route]
+
     end
 
   end
