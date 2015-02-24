@@ -1,0 +1,59 @@
+<title>Shared Todo App</title>
+
+<div class="container">
+
+<div class="row">
+
+<div class="span12">
+
+<h1>Get Stuff Done</h1>
+
+<hr>
+
+<p>Update details for To Do</p>
+
+
+
+<% if !flash[:error].nil? %>
+
+  <div class="alert alert-error">
+
+    <button type="button" class="close" data-dismiss="alert" >x</button>
+
+    <strong><%= flash[:error] %></strong>
+
+  </div>
+
+<% end %>
+
+<% if flash[:success] %>
+
+  <div class="alert alert-success">
+
+     <button type="button" class="close" data-dismiss="alert" >x</button>
+
+    <strong><%= flash[:success] %></strong>
+
+  </div>
+
+<% end %>
+
+<div class="well">
+  
+
+  <%= form_for @user, :url => { :action => "updateuser" } do |f| %>
+  
+    <table style="width:600">
+  <tr><td width:10%>Username:</td><td width:40%><%= f.text_field :username, :value => @user.username %></td>
+      <td width:10%>Email:</td><td width:40%><%= f.text_field :email,  :value => @user.email %></td></tr>
+  <tr><td width:80%><br><%= f.submit "Update To Do", class: "btn btn-primary" %></td></td><td width:10%><br><%= link_to 'Back', :back %></td></tr>
+  </table>
+  <% end %>
+
+</div> <!-- well -->
+
+</div> <!-- span12 -->
+
+</div> <!-- row -->
+
+</div> <!-- container -->

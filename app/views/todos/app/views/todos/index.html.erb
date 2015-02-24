@@ -1,0 +1,228 @@
+<title>Shared Todo App</title>
+
+<div class="container">
+
+<div class="row">
+
+<div class="span12">
+
+<h1>Get Stuff Done</h1>
+
+<hr>
+
+<%= form_for @new_todo, :url => { :action => "add" } do |f| %>
+
+  <%= f.text_field :todo_item %>
+  <%= f.submit "Add To Do", class: "btn btn-primary" %>
+
+<% end %>
+
+<% if !flash[:error].nil? %>
+
+  <div class="alert alert-error">
+
+    <button type="button" class="close" data-dismiss="alert" >x</button>
+
+    <strong><%= flash[:error] %></strong>
+
+  </div>
+
+<% end %>
+
+<% if flash[:success] %>
+
+  <div class="alert alert-success">
+
+     <button type="button" class="close" data-dismiss="alert" >x</button>
+
+    <strong><%= flash[:success] %></strong>
+
+  </div>
+
+<% end %>
+
+<%= form_tag("/todos/complete/", :method => "post") do %>
+
+<div class="span12">
+
+	<%= submit_tag("Complete", :class=>"btn btn-success", :name=>"complete_todo") %>
+	<%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
+	
+
+</div> <!-- span12 -->
+
+<hr><br>
+
+<div class="row">
+
+<div class="span7">
+
+	<table class="table table-striped">
+
+		<h4>Today</h4>
+		
+		<thead>
+	
+			<tr>
+				<th>Item</th>
+				<th>For</th>
+				<th>Deadline</th>
+			</tr>
+
+		</thead>
+
+		<tbody>      
+
+			<% @todo_today.each do |t| %>
+				
+				<tr>	
+					<td>
+					<% if t.todo_complete == true %>
+          
+						<%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+
+					<% else %>
+
+						<%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+
+					<% end %>
+					</td>
+					<td><%= t.todo_for %></td>
+					<td><%= t.todo_deadline %></td>
+
+				</tr>
+
+			<% end %>
+
+		</tbody>
+	</table>
+	
+	<br>
+	
+
+
+</div> <!-- span7 -->
+
+<div class="row">
+
+<div class="span3 offset1">
+
+	<table class="table table-striped">
+
+
+		<h4>This Week</h4>
+		
+		<% if @todo_week.count == 0 %>
+
+			<tbody><tr>Nothing to do</tr></tbody>
+
+		<% else %>
+
+			<thead>
+	
+				<tr>
+					<th>Item</th>
+
+				</tr>
+
+			</thead>
+
+			<tbody>      
+
+				<% @todo_week.each do |t| %>
+			
+	
+					<tr>	
+						<td>
+						<% if t.todo_complete == true %>
+          
+							<%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+	
+						<% else %>
+
+							<%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+
+						<% end %>
+						</td>
+
+					</tr>
+
+				<% end %>
+			
+			</tbody>
+
+		<% end %>
+
+	</table>
+	
+	<br>
+
+</div> <!-- span3 -->
+
+</div> <!-- row -->
+
+<div class="row">
+
+<div class="span3 offset1">
+
+	<table class="table table-striped">
+
+
+		<h4>Personal</h4>
+		
+		<% if @todo_personal.count == 0 %>
+
+			<tbody><tr>Nothing to do</tr></tbody>
+
+		<% else %>
+
+			<thead>
+	
+				<tr>
+					<th>Item</th>
+
+				</tr>
+
+			</thead>
+
+			<tbody>      
+
+				<% @todo_personal.each do |t| %>
+			
+	
+					<tr>	
+						<td>
+						<% if t.todo_complete == true %>
+          
+							<%= check_box_tag "todos_checkbox[]",t.id %> <strike><%= t.todo_item %></strike>
+	
+						<% else %>
+
+							<%= check_box_tag "todos_checkbox[]",t.id %> <%= link_to t.todo_item, details_path(t.id) %>
+
+						<% end %>
+						</td>
+
+					</tr>
+
+				<% end %>
+			
+			</tbody>
+
+		<% end %>
+
+	</table>
+	
+	<br>
+
+</div> <!-- span3 -->
+
+</div> <!-- row --> 
+
+<% end %>
+
+</div> <!-- span12 -->
+
+</div> <!-- row -->
+
+</div> <!-- container -->

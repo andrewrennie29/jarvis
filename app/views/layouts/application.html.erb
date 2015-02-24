@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jarvis</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <a class="brand" href="/todos/index"> Get Stuff Done</a>
+  </div>
+<% if session[:user_id].nil? %>
+
+<% else %>
+  <div>
+  
+    <ul class="nav navbar-nav">
+    
+	<li class="active"><a href="/projects/index">Projects</a></li>
+        <li class="active"><a href="/admin/index">Admin</a></li>
+	<li class="active"><a href="/logout">Logout</a></li>
+
+    </ul>
+
+  </div>
+
+<% end %>
+
+</nav>
+<%= yield %>
+
+</body>
+</html>

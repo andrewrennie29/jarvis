@@ -1,0 +1,87 @@
+<title>Shared Todo App</title>
+
+<div class="container">
+
+<div class="row">
+
+<div class="span12">
+
+<h1>Projects</h1>
+
+<hr>
+
+<%= form_for @new_todo, :url => { :action => "add", :controller => "todos" } do |f| %>
+
+  <%= f.text_field :todo_item %>
+  <%= f.submit "Add To Do", class: "btn btn-primary" %>
+
+<% end %>
+
+<% if !flash[:error].nil? %>
+
+  <div class="alert alert-error">
+
+    <button type="button" class="close" data-dismiss="alert" >x</button>
+
+    <%= flash[:error] %>
+
+  </div>
+
+<% end %>
+
+<% if flash[:success] %>
+
+  <div class="alert alert-success">
+
+     <button type="button" class="close" data-dismiss="alert" >x</button>
+
+    <%= flash[:success] %>
+
+  </div>
+
+<% end %>
+
+<div class="span12">
+
+	<table class="table table-striped">
+		
+		<thead>
+	
+			<tr>
+				<th>Project</th>
+				<th>Deadline</th>
+				<th>Outstanding Items</th>
+				<th>Hours Still Required</th>
+				<th>% Completion</th>
+			</tr>
+
+		</thead>
+
+		<tbody>      
+
+			<% @projects.each do |p| %>
+				
+				<tr>	
+					
+					<td><%= link_to p.todo_project, projectdetails_path(p.todo_project) %></td>
+					<td><%= p.project_deadline %></td>
+					<td><%= p.todo_item_count %></td>
+					<td><%= number_with_precision(p.time_remaining, precision: 2) %></td>
+					<td><%= p.percentage_complete %>%</td>
+
+				</tr>
+
+			<% end %>
+
+		</tbody>
+	</table>	
+
+
+
+</div> <!-- span12 -->
+
+</div> <!-- span12 -->
+
+</div> <!-- row -->
+
+</div> <!-- container -->
