@@ -17,8 +17,11 @@ ActiveRecord::Schema.define(version: 20150211215634) do
     t.text     "todo_item"
     t.string   "todo_for"
     t.date     "todo_deadline"
+<<<<<<< HEAD
     t.string   "todo_category"
     t.string   "todo_project"
+=======
+>>>>>>> 41c4080cf0eec91f54f90a650f2f0ec856d77541
     t.integer  "todo_importance"
     t.decimal  "todo_urgence",       precision: 10, scale: 4
     t.decimal  "todo_timerequired",  precision: 10, scale: 4
@@ -28,11 +31,21 @@ ActiveRecord::Schema.define(version: 20150211215634) do
     t.decimal  "todo_timeremaining", precision: 10, scale: 4
     t.decimal  "todo_ranking",       precision: 10, scale: 4
     t.boolean  "todo_complete"
+<<<<<<< HEAD
     t.date     "todo_enddate"
     t.time     "todo_deadlinetime"
     t.string   "todo_review"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+=======
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "todo_category"
+    t.string   "todo_project"
+    t.string   "todo_user"
+    t.date     "todo_enddate"
+    t.time     "todo_deadlinetime"
+>>>>>>> 41c4080cf0eec91f54f90a650f2f0ec856d77541
     t.integer  "user_id"
     t.date     "assigneddate"
     t.boolean  "latestrecur"

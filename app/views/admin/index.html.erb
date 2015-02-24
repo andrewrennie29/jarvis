@@ -41,6 +41,7 @@
 <div class="well">
   
 
+<<<<<<< HEAD
   <%= form_for @user, :url => { :action => "updateuser" } do |f| %>
   
     <table style="width:600">
@@ -48,6 +49,14 @@
       <td width:10%>Email:</td><td width:40%><%= f.text_field :email,  :value => @user.email %></td></tr>
   <tr><td width:80%><br><%= f.submit "Update Details", class: "btn btn-primary" %></td></td><td width:10%><br><%= link_to 'Back', :back %></td></tr>
   </table>
+=======
+  <%= form_for @user, :url => { :action => "updateuser" }, class="form-group" do |f| %>
+  
+    <div class="form-group">
+	<label for = "username">Username</label><input type="text" class="form-control" id  
+
+
+>>>>>>> 41c4080cf0eec91f54f90a650f2f0ec856d77541
   <% end %>
 
 </div> <!-- well -->
