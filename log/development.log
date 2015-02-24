@@ -1394,3 +1394,155 @@ SyntaxError (/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.
   Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.2ms)
   Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (4.1ms)
   Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (135.6ms)
+
+
+Started GET "/projects/index" for 127.0.0.1 at 2015-02-24 22:18:08 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mTodo Load (63.5ms)[0m  SELECT todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete=true,0,1)) as todo_item_count, round(sum(if(todo_complete=true,0,todo_timeremaining)),2) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(todo_timerequired),0) as percentage_complete FROM `todos`  WHERE (todo_project is not null and todo_project !='' AND user_id = 2) GROUP BY todo_project HAVING sum(if(todo_complete=true,0,1)) > 0
+  Rendered projects/index.html.erb within layouts/application (140.1ms)
+Completed 200 OK in 631ms (Views: 507.5ms | ActiveRecord: 67.5ms)
+
+
+Started POST "/todos/add" for 127.0.0.1 at 2015-02-24 22:18:14 +0000
+Processing by TodosController#add as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5ryuzEYqxiIuxaEdPx60Fzp3UzOToOqotBe2GiTxznA=", "todo"=>{"todo_item"=>"Test badges"}, "commit"=>"Add To Do"}
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO `todos` (`created_at`, `todo_complete`, `todo_deadline`, `todo_item`, `updated_at`, `user_id`) VALUES ('2015-02-24 22:18:14', 0, '2015-02-24', 'Test badges', '2015-02-24 22:18:14', 2)
+  [1m[36m (65.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/todos/details/1
+Completed 302 Found in 82ms (ActiveRecord: 67.0ms)
+
+
+Started GET "/todos/details/1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTodo Load (0.9ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 1 LIMIT 1
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '1')[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 1 LIMIT 1
+  Rendered todos/details.html.erb within layouts/application (66.4ms)
+Completed 200 OK in 435ms (Views: 411.9ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:15 +0000
+
+
+Started PATCH "/todos/updatetodo" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+Processing by TodosController#updatetodo as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5ryuzEYqxiIuxaEdPx60Fzp3UzOToOqotBe2GiTxznA=", "todo"=>{"todo_id"=>"1", "todo_item"=>"Test badges", "todo_status"=>"0%", "todo_for"=>"Me", "todo_deadline"=>"2015-02-24", "todo_category"=>"Personal", "todo_project"=>"Todo List", "todo_timerequired"=>"1", "todo_importance"=>"1", "todo_recurring"=>"0", "todo_frequency"=>"", "todo_enddate"=>""}, "commit"=>"Update To Do"}
+  [1m[36mTodo Load (0.4ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (32.5ms)[0m  [1mUPDATE `todos` SET `todo_category` = 'Personal', `todo_for` = 'Me', `todo_importance` = 1, `todo_project` = 'Todo List', `todo_recurring` = 0, `todo_status` = 0.0, `todo_timeremaining` = 1.0, `todo_timerequired` = 1.0, `todo_urgence` = 11.0, `updated_at` = '2015-02-24 22:18:30' WHERE `todos`.`id` = 1[0m
+  [1m[35m (70.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/projects/index
+Completed 302 Found in 118ms (ActiveRecord: 103.6ms)
+
+
+Started GET "/projects/index" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+Processing by ProjectsController#index as HTML
+  [1m[36mTodo Load (36.9ms)[0m  [1mSELECT todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete=true,0,1)) as todo_item_count, round(sum(if(todo_complete=true,0,todo_timeremaining)),2) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(todo_timerequired),0) as percentage_complete FROM `todos`  WHERE (todo_project is not null and todo_project !='' AND user_id = 2) GROUP BY todo_project HAVING sum(if(todo_complete=true,0,1)) > 0[0m
+  Rendered projects/index.html.erb within layouts/application (166.4ms)
+Completed 200 OK in 408ms (Views: 366.8ms | ActiveRecord: 36.9ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-24 22:18:30 +0000
+
+
+Started GET "/projects/index" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+Processing by ProjectsController#index as HTML
+  [1m[35mTodo Load (1.1ms)[0m  SELECT todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete=true,0,1)) as todo_item_count, round(sum(if(todo_complete=true,0,todo_timeremaining)),2) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(todo_timerequired),0) as percentage_complete FROM `todos`  WHERE (todo_project is not null and todo_project !='' AND user_id = 2) GROUP BY todo_project HAVING sum(if(todo_complete=true,0,1)) > 0
+  Rendered projects/index.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 266ms (Views: 261.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-24 22:19:02 +0000
