@@ -4786,3 +4786,1798 @@ Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.et.js?bod
 
 
 Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fa.js?body=1" for 127.0.0.1 at 2015-02-25 06:40:23 +0000
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-25 20:47:10 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (28.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by HomeController#index as HTML
+Redirected to http://localhost:3000/todos/index
+Completed 302 Found in 74ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 20:47:12 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (378.8ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (136.1ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)[0m
+  [1m[35mTodo Load (25.8ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (19.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (1.9ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  [1m[36mTodo Load (1.3ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC[0m
+  Rendered todos/index.html.erb within layouts/application (327.5ms)
+Completed 200 OK in 8797ms (Views: 8109.4ms | ActiveRecord: 570.6ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/core.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ar.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.az.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bg.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bs.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ca.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cs.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cy.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.da.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:21 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.de.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.el.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.es.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.et.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.eu.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fa.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fi.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fo.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr-CH.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.gl.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.he.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hr.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hu.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hy.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.id.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.is.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kk.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ja.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ka.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kh.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ms.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kr.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lt.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lv.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:22 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.mk.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it-CH.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nb.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.no.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pl.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ro.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs-latin.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ru.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sk.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sl.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sq.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr-latin.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sv.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.vi.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.th.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.tr.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ua.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.uk.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sw.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/index.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:23 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:24 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-25 20:47:24 +0000
+
+
+Started GET "/projects/index" for 127.0.0.1 at 2015-02-25 20:47:28 +0000
+Processing by ProjectsController#index as HTML
+  [1m[35mTodo Load (173.4ms)[0m  SELECT todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete=true,0,1)) as todo_item_count, round(sum(if(todo_complete=true,0,todo_timeremaining)),2) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(todo_timerequired),0) as percentage_complete FROM `todos`  WHERE (todo_project is not null and todo_project !='' AND user_id = 2) GROUP BY todo_project HAVING sum(if(todo_complete=true,0,1)) > 0
+  Rendered projects/index.html.erb within layouts/application (497.1ms)
+Completed 200 OK in 2321ms (Views: 2143.6ms | ActiveRecord: 173.4ms)
+
+
+Started GET "/projects/details/Todo%20List" for 127.0.0.1 at 2015-02-25 20:47:33 +0000
+Processing by ProjectsController#projectdetails as HTML
+  Parameters: {"project"=>"Todo List"}
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (todo_project = 'Todo List' AND user_id = 2 AND (latestrecur=true or latestrecur is null))[0m
+  [1m[35mTodo Load (1.3ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (todo_project = 'Todo List' AND user_id = 2 AND (latestrecur=true or latestrecur is null))  ORDER BY todo_complete ASC, todo_deadline ASC, todo_item ASC
+  Rendered projects/details.html.erb within layouts/application (55.7ms)
+Completed 200 OK in 1987ms (Views: 1973.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/todos/details/1" for 127.0.0.1 at 2015-02-25 20:47:37 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTodo Load (0.9ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (id = '1')
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 1 LIMIT 1[0m
+  Rendered todos/details.html.erb within layouts/application (51.1ms)
+Completed 200 OK in 1877ms (Views: 1798.7ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/projects/details/Todo%20List" for 127.0.0.1 at 2015-02-25 20:47:50 +0000
+Processing by ProjectsController#projectdetails as HTML
+  Parameters: {"project"=>"Todo List"}
+  [1m[35m (2.7ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (todo_project = 'Todo List' AND user_id = 2 AND (latestrecur=true or latestrecur is null))
+  [1m[36mTodo Load (5.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (todo_project = 'Todo List' AND user_id = 2 AND (latestrecur=true or latestrecur is null))  ORDER BY todo_complete ASC, todo_deadline ASC, todo_item ASC[0m
+  Rendered projects/details.html.erb within layouts/application (27.0ms)
+Completed 200 OK in 1694ms (Views: 1669.3ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/todos/details/1" for 127.0.0.1 at 2015-02-25 20:48:02 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTodo Load (0.4ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '1')[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 1 LIMIT 1
+  Rendered todos/details.html.erb within layouts/application (19.9ms)
+Completed 200 OK in 2724ms (Views: 2709.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 20:48:31 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (109.0ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (64.9ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.9ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)
+  [1m[36mTodo Load (1.1ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (20.5ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
+  Rendered todos/index.html.erb within layouts/application (54.1ms)
+Completed 200 OK in 1852ms (Views: 1645.7ms | ActiveRecord: 198.5ms)
+
+
+Started GET "/todos/details/2" for 127.0.0.1 at 2015-02-25 20:48:37 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTodo Load (0.9ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 2 LIMIT 1[0m
+  [1m[35m (2.2ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (id = '2')
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 2 LIMIT 1[0m
+  Rendered todos/details.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 1612ms (Views: 1595.7ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 20:48:55 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (106.0ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (46.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (1.1ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)[0m
+  [1m[35mTodo Load (1.1ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (1.3ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  [1m[36mTodo Load (1.1ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC[0m
+  Rendered todos/index.html.erb within layouts/application (17.7ms)
+Completed 200 OK in 2289ms (Views: 2122.7ms | ActiveRecord: 158.3ms)
+
+
+Started POST "/todos/add" for 127.0.0.1 at 2015-02-25 20:49:20 +0000
+Processing by TodosController#add as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5ryuzEYqxiIuxaEdPx60Fzp3UzOToOqotBe2GiTxznA=", "todo"=>{"todo_item"=>"Test dates"}, "commit"=>"Add To Do"}
+  [1m[35m (15.7ms)[0m  BEGIN
+  [1m[36mSQL (74.8ms)[0m  [1mINSERT INTO `todos` (`created_at`, `todo_complete`, `todo_deadline`, `todo_item`, `updated_at`, `user_id`) VALUES ('2015-02-25 20:49:20', 0, '2015-02-25', 'Test dates', '2015-02-25 20:49:20', 2)[0m
+  [1m[35m (126.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/todos/details/3
+Completed 302 Found in 240ms (ActiveRecord: 217.2ms)
+
+
+Started GET "/todos/details/3" for 127.0.0.1 at 2015-02-25 20:49:20 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTodo Load (0.9ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 3 LIMIT 1[0m
+  [1m[35m (1.9ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (id = '3')
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 3 LIMIT 1[0m
+  Rendered todos/details.html.erb within layouts/application (26.8ms)
+Completed 200 OK in 1781ms (Views: 1763.5ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:22 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:22 +0000
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ca.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ar.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.az.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bg.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bs.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/core.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cy.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cs.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.da.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.de.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.el.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.et.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.es.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.eu.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fa.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fi.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fo.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr-CH.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.gl.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.he.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hr.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hu.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hy.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.id.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.is.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it-CH.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ja.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ka.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kh.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lv.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kr.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kk.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lt.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.mk.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ms.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nb.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.no.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pl.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ro.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs-latin.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sk.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ru.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sl.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sq.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr-latin.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sv.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.tr.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sw.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.th.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ua.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.uk.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.vi.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/index.js?body=1" for 127.0.0.1 at 2015-02-25 20:49:24 +0000
+
+
+Started GET "/todos/delete/3" for 127.0.0.1 at 2015-02-25 20:49:43 +0000
+Processing by TodosController#delete as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mTodo Load (0.4ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 3 LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '3')[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 3 LIMIT 1
+  [1m[36mSQL (106.4ms)[0m  [1mDELETE FROM `todos` WHERE `todos`.`id` = 3[0m
+Redirected to http://localhost:3000/todos/index
+Completed 302 Found in 124ms (ActiveRecord: 107.3ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 20:49:43 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (43.1ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (65.1ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (20.7ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (0.8ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  [1m[36mTodo Load (0.9ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC[0m
+  Rendered todos/index.html.erb within layouts/application (13.9ms)
+Completed 200 OK in 1702ms (Views: 1561.2ms | ActiveRecord: 132.8ms)
+
+
+Started GET "/todos/details/2" for 127.0.0.1 at 2015-02-25 20:49:48 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mTodo Load (1.2ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 2 LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '2')[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 2 LIMIT 1
+  Rendered todos/details.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 1571ms (Views: 1556.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 20:49:54 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (204.2ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (76.6ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (29.3ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
+  Rendered todos/index.html.erb within layouts/application (43.7ms)
+Completed 200 OK in 1775ms (Views: 1453.7ms | ActiveRecord: 313.8ms)
+
+
+Started POST "/todos/add" for 127.0.0.1 at 2015-02-25 20:50:02 +0000
+Processing by TodosController#add as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5ryuzEYqxiIuxaEdPx60Fzp3UzOToOqotBe2GiTxznA=", "todo"=>{"todo_item"=>"Testtest"}, "commit"=>"Add To Do"}
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (17.9ms)[0m  INSERT INTO `todos` (`created_at`, `todo_complete`, `todo_deadline`, `todo_item`, `updated_at`, `user_id`) VALUES ('2015-02-25 20:50:02', 0, '2015-02-25', 'Testtest', '2015-02-25 20:50:02', 2)
+  [1m[36m (49.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/todos/details/4
+Completed 302 Found in 76ms (ActiveRecord: 67.6ms)
+
+
+Started GET "/todos/details/4" for 127.0.0.1 at 2015-02-25 20:50:02 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mTodo Load (0.9ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 4 LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '4')[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 4 LIMIT 1
+  Rendered todos/details.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 1566ms (Views: 1554.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ar.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.az.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bg.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.el.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cs.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cy.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.da.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.eu.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.de.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bs.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.es.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.et.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fa.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fi.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr-CH.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fo.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.gl.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.he.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hr.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.id.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hy.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.is.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hu.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it-CH.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ja.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ka.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lt.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kk.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kr.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kh.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.mk.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lv.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ms.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nb.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pl.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.no.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ro.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs-latin.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ru.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr-latin.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sq.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sl.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sk.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sv.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.vi.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.th.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.tr.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sw.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ua.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.uk.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/index.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/core.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ca.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:04 +0000
+
+
+Started PATCH "/todos/updatetodo" for 127.0.0.1 at 2015-02-25 20:50:21 +0000
+Processing by TodosController#updatetodo as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5ryuzEYqxiIuxaEdPx60Fzp3UzOToOqotBe2GiTxznA=", "todo"=>{"todo_id"=>"4", "todo_item"=>"Testtest", "todo_status"=>"0%", "todo_for"=>"Me", "todo_deadline"=>"2015-02-25", "todo_category"=>"Personal", "todo_project"=>"Todo List", "todo_timerequired"=>"1", "todo_importance"=>"1", "todo_recurring"=>"0", "todo_frequency"=>"", "todo_enddate"=>""}, "commit"=>"Update To Do"}
+  [1m[36mTodo Load (2.6ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 4 LIMIT 1[0m
+  [1m[35m (2.3ms)[0m  BEGIN
+  [1m[36mSQL (34.3ms)[0m  [1mUPDATE `todos` SET `todo_category` = 'Personal', `todo_for` = 'Me', `todo_importance` = 1, `todo_project` = 'Todo List', `todo_recurring` = 0, `todo_status` = 0.0, `todo_timeremaining` = 1.0, `todo_timerequired` = 1.0, `todo_urgence` = 11.0, `updated_at` = '2015-02-25 20:50:21' WHERE `todos`.`id` = 4[0m
+  [1m[35m (92.9ms)[0m  COMMIT
+Redirected to http://localhost:3000/todos/index
+Completed 302 Found in 160ms (ActiveRecord: 132.2ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 20:50:21 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (131.4ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (84.9ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
+  Rendered todos/index.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 1700ms (Views: 1471.6ms | ActiveRecord: 221.1ms)
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/core.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ar.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cs.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.az.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bg.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bs.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ca.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cy.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.de.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.da.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.el.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.es.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.et.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fa.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fi.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fo.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.eu.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr-CH.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.id.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hr.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.he.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hu.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.gl.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hy.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kh.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ja.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it-CH.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.is.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ka.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ms.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kr.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lt.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kk.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.mk.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lv.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nb.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.no.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pl.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sk.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs-latin.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ru.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ro.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sw.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sv.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr-latin.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sl.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sq.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.vi.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.tr.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ua.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.uk.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.th.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/index.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-25 20:50:23 +0000
+
+
+Started GET "/todos/details/4" for 127.0.0.1 at 2015-02-25 20:50:27 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mTodo Load (0.8ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 4 LIMIT 1[0m
+  [1m[35m (1.9ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (id = '4')
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 4 LIMIT 1[0m
+  Rendered todos/details.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 1507ms (Views: 1490.6ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 20:54:10 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (99.2ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (42.8ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)[0m
+  [1m[35mSQL (19.2ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (0.9ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  [1m[36mTodo Load (1.2ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC[0m
+  Rendered todos/index.html.erb within layouts/application (15.5ms)
+Completed 200 OK in 2584ms (Views: 2411.0ms | ActiveRecord: 165.5ms)
+
+
+Started GET "/todos/details/2" for 127.0.0.1 at 2015-02-25 20:54:15 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mTodo Load (0.9ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 2 LIMIT 1
+  [1m[36m (0.9ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '2')[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 2 LIMIT 1
+  Rendered todos/details.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 1490ms (Views: 1479.7ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 20:54:23 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (42.1ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (65.0ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (22.1ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (0.7ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
+  Rendered todos/index.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 1652ms (Views: 1510.2ms | ActiveRecord: 132.8ms)
+
+
+Started POST "/todos/add" for 127.0.0.1 at 2015-02-25 20:54:30 +0000
+Processing by TodosController#add as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5ryuzEYqxiIuxaEdPx60Fzp3UzOToOqotBe2GiTxznA=", "todo"=>{"todo_item"=>"rarsa"}, "commit"=>"Add To Do"}
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (56.9ms)[0m  INSERT INTO `todos` (`created_at`, `todo_complete`, `todo_deadline`, `todo_item`, `updated_at`, `user_id`) VALUES ('2015-02-25 20:54:30', 0, '2015-02-25', 'rarsa', '2015-02-25 20:54:30', 2)
+  [1m[36m (107.9ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/todos/details/5
+Completed 302 Found in 180ms (ActiveRecord: 165.1ms)
+
+
+Started GET "/todos/details/5" for 127.0.0.1 at 2015-02-25 20:54:30 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mTodo Load (7.0ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 5 LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '5')[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 5 LIMIT 1
+  Rendered todos/details.html.erb within layouts/application (15.5ms)
+Completed 200 OK in 1551ms (Views: 1534.9ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ar.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.az.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bg.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bs.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cs.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.es.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.el.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.de.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.da.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cy.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr-CH.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fa.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.et.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fi.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.eu.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fo.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.gl.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hu.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hr.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.he.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ja.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.id.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.is.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it-CH.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hy.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lv.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.mk.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kr.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kk.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lt.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kh.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ms.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nb.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ka.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.no.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pl.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ru.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sk.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ro.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs-latin.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sw.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sq.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr-latin.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sv.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.vi.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.th.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.tr.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ua.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.uk.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sl.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:32 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/index.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/core.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ca.js?body=1" for 127.0.0.1 at 2015-02-25 20:54:33 +0000
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 20:54:38 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (51.6ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (55.8ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)
+  [1m[36mTodo Load (1.1ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (2.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  [1m[35mTodo Load (1.3ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
+  Rendered todos/index.html.erb within layouts/application (18.5ms)
+Completed 200 OK in 1825ms (Views: 1702.2ms | ActiveRecord: 113.8ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 21:07:42 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (96.3ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (43.2ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
+  Rendered todos/index.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 1691ms (Views: 1539.5ms | ActiveRecord: 144.5ms)
+
+
+Started GET "/projects/index" for 127.0.0.1 at 2015-02-25 21:07:47 +0000
+Processing by ProjectsController#index as HTML
+  [1m[36mTodo Load (45.3ms)[0m  [1mSELECT todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete=true,0,1)) as todo_item_count, round(sum(if(todo_complete=true,0,todo_timeremaining)),2) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(todo_timerequired),0) as percentage_complete FROM `todos`  WHERE (todo_project is not null and todo_project !='' AND user_id = 2) GROUP BY todo_project HAVING sum(if(todo_complete=true,0,1)) > 0[0m
+  Rendered projects/index.html.erb within layouts/application (53.2ms)
+Completed 200 OK in 1553ms (Views: 1504.5ms | ActiveRecord: 45.3ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 21:07:54 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (61.9ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (41.8ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (0.7ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  [1m[36mTodo Load (0.9ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC[0m
+  Rendered todos/index.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 1638ms (Views: 1520.1ms | ActiveRecord: 108.3ms)
+
+
+Started GET "/projects/index" for 127.0.0.1 at 2015-02-25 21:08:21 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mTodo Load (1.9ms)[0m  SELECT todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete=true,0,1)) as todo_item_count, round(sum(if(todo_complete=true,0,todo_timeremaining)),2) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(todo_timerequired),0) as percentage_complete FROM `todos`  WHERE (todo_project is not null and todo_project !='' AND user_id = 2) GROUP BY todo_project HAVING sum(if(todo_complete=true,0,1)) > 0
+  Rendered projects/index.html.erb within layouts/application (142.2ms)
+Completed 200 OK in 3299ms (Views: 3212.4ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 21:08:27 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (136.5ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (42.3ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)
+  [1m[36mTodo Load (1.3ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
+  Rendered todos/index.html.erb within layouts/application (32.0ms)
+Completed 200 OK in 1906ms (Views: 1712.5ms | ActiveRecord: 184.1ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-25 21:08:31 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (3.7ms)
+Completed 500 Internal Server Error in 142ms
+
+SyntaxError (/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:44: syntax error, unexpected '='
+...ction => "updateuser" }, class="form-group" do |f| @output_b...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:44: syntax error, unexpected keyword_do_block, expecting keyword_end
+...euser" }, class="form-group" do |f| @output_buffer.safe_appe...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:60: syntax error, unexpected keyword_ensure, expecting end-of-input):
+  app/views/admin/index.html.erb:44: syntax error, unexpected '='
+  app/views/admin/index.html.erb:44: syntax error, unexpected keyword_do_block, expecting keyword_end
+  app/views/admin/index.html.erb:60: syntax error, unexpected keyword_ensure, expecting end-of-input
+  app/controllers/admin_controller.rb:13:in `index'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (52.4ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (18.8ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.5ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (4.0ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (142.1ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-25 21:08:34 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (4.3ms)
+Completed 500 Internal Server Error in 19ms
+
+SyntaxError (/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:44: syntax error, unexpected '='
+...ction => "updateuser" }, class="form-group" do |f| @output_b...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:44: syntax error, unexpected keyword_do_block, expecting keyword_end
+...euser" }, class="form-group" do |f| @output_buffer.safe_appe...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:60: syntax error, unexpected keyword_ensure, expecting end-of-input):
+  app/views/admin/index.html.erb:44: syntax error, unexpected '='
+  app/views/admin/index.html.erb:44: syntax error, unexpected keyword_do_block, expecting keyword_end
+  app/views/admin/index.html.erb:60: syntax error, unexpected keyword_ensure, expecting end-of-input
+  app/controllers/admin_controller.rb:13:in `index'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (53.8ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (18.2ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.3ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (3.8ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (136.9ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 21:10:04 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by TodosController#index as HTML
+  [1m[35m (90.3ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (46.8ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)[0m
+  [1m[35mTodo Load (14.4ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (0.9ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC[0m
+  Rendered todos/index.html.erb within layouts/application (105.5ms)
+Completed 200 OK in 2981ms (Views: 2760.3ms | ActiveRecord: 159.2ms)
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nl.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.no.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pl.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.pt.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs-latin.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ro.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.rs.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ru.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sk.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sl.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:07 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sq.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr-latin.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sr.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sv.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.sw.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.th.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.tr.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ua.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.uk.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.vi.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/index.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/core.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ar.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.az.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bg.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.bs.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ca.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cs.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.cy.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.da.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.de.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.el.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:08 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.es.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.et.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.eu.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fa.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fi.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fo.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr-CH.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.fr.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.gl.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.he.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hr.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it-CH.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hy.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.id.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.is.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.hu.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.it.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ja.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ka.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kh.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kk.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.kr.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lt.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.lv.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.mk.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.ms.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/assets/bootstrap-datepicker/locales/bootstrap-datepicker.nb.js?body=1" for 127.0.0.1 at 2015-02-25 21:10:09 +0000
+
+
+Started GET "/projects/index" for 127.0.0.1 at 2015-02-25 21:10:11 +0000
+Processing by ProjectsController#index as HTML
+  [1m[35mTodo Load (1.9ms)[0m  SELECT todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete=true,0,1)) as todo_item_count, round(sum(if(todo_complete=true,0,todo_timeremaining)),2) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(todo_timerequired),0) as percentage_complete FROM `todos`  WHERE (todo_project is not null and todo_project !='' AND user_id = 2) GROUP BY todo_project HAVING sum(if(todo_complete=true,0,1)) > 0
+  Rendered projects/index.html.erb within layouts/application (38.6ms)
+Completed 200 OK in 1432ms (Views: 1426.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 21:10:15 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (50.4ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (54.2ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (0.8ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
+  Rendered todos/index.html.erb within layouts/application (22.4ms)
+Completed 200 OK in 1550ms (Views: 1433.8ms | ActiveRecord: 109.1ms)
