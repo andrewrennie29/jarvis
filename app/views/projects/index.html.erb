@@ -63,7 +63,7 @@
 				
 				<tr>	
 					
-					<td><span class="badge"><%= p.todo_item_count %></span></td>
+					<td><span class="badge badge-info"><%= p.todo_item_count %></span></td>
 					<td><%= link_to p.todo_project, projectdetails_path(p.todo_project) %></td>
 					<td><%= p.project_deadline %></td>
 					<td><%= number_with_precision(p.time_remaining, precision: 2) %></td>
