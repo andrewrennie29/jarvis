@@ -6581,3 +6581,50 @@ Processing by TodosController#index as HTML
   [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
   Rendered todos/index.html.erb within layouts/application (22.4ms)
 Completed 200 OK in 1550ms (Views: 1433.8ms | ActiveRecord: 109.1ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-25 21:20:23 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (44.5ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (54.1ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
+  Rendered todos/index.html.erb within layouts/application (15.7ms)
+Completed 200 OK in 1229ms (Views: 1118.8ms | ActiveRecord: 103.5ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-25 21:20:24 +0000
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-25 21:20:24 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-25 21:20:24 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-25 21:20:24 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-25 21:20:24 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-25 21:20:24 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-25 21:20:24 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-25 21:20:25 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-25 21:20:25 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-25 21:20:25 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-25 21:20:25 +0000
