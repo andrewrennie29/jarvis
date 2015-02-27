@@ -10,8 +10,7 @@
 
 <hr>
 
-<p>Update details for To Do</p>
-
+<p>Update your details</p>
 
 
 <% if !flash[:error].nil? %>
@@ -49,6 +48,8 @@
       <td width:10%>End Time:</td><td width:40%><%= f.text_field :endwork, :value => @user.endwork.to_s(:time) %></td></tr>
   <tr><td width:10%>Lunch Start:</td><td width:40%><%= f.text_field :lunchstart, :value => @user.lunchstart.to_s(:time) %></td>
       <td width:10%>Lunch Time:</td><td width:40%><%= f.text_field :lunchlength, :value => @user.lunchlength %></td></tr>
+<tr><td width:10%>Send Daily Summary Emails:</td><td width:40%><%= f.check_box :dailysummarymail,  :value => @user.dailysummarymail %></td></tr>
+dailysummarymail
   <tr><td width:80%><br><%= f.submit "Update Details", class: "btn btn-primary" %></td><td width:10%><br><%= link_to 'Back', :back %></td></tr>
   </table>
   <% end %>
