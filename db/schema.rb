@@ -11,12 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211215634) do
+ActiveRecord::Schema.define(version: 20150227205145) do
 
   create_table "todos", force: true do |t|
     t.text     "todo_item"
     t.string   "todo_for"
     t.date     "todo_deadline"
+    t.string   "todo_category"
+    t.string   "todo_project"
     t.integer  "todo_importance"
     t.decimal  "todo_urgence",       precision: 10, scale: 4
     t.decimal  "todo_timerequired",  precision: 10, scale: 4
@@ -26,13 +28,11 @@ ActiveRecord::Schema.define(version: 20150211215634) do
     t.decimal  "todo_timeremaining", precision: 10, scale: 4
     t.decimal  "todo_ranking",       precision: 10, scale: 4
     t.boolean  "todo_complete"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.string   "todo_category"
-    t.string   "todo_project"
-    t.string   "todo_user"
     t.date     "todo_enddate"
     t.time     "todo_deadlinetime"
+    t.string   "todo_review"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.integer  "user_id"
     t.date     "assigneddate"
     t.boolean  "latestrecur"
@@ -48,7 +48,8 @@ ActiveRecord::Schema.define(version: 20150211215634) do
     t.time     "startwork"
     t.time     "endwork"
     t.time     "lunchstart"
-    t.decimal  "lunchlength",   precision: 10, scale: 4
+    t.decimal  "lunchlength",      precision: 10, scale: 4
+    t.boolean  "dailysummarymail"
   end
 
 end
