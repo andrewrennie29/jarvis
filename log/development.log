@@ -7534,3 +7534,768 @@ Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-27 21:01:20 +000
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-27 21:01:20 +0000
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-27 21:04:54 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 351ms (Views: 346.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/projects/index" for 127.0.0.1 at 2015-02-27 21:04:55 +0000
+Processing by ProjectsController#index as HTML
+  [1m[36mTodo Load (0.4ms)[0m  [1mSELECT todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete=true,0,1)) as todo_item_count, round(sum(if(todo_complete=true,0,todo_timeremaining)),2) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(if((latestrecur=true or latestrecur is null),todo_timerequired,0)),0) as percentage_complete FROM `todos`  WHERE (todo_project is not null and todo_project !='' AND user_id = 2) GROUP BY todo_project HAVING sum(if(todo_complete=true,0,1)) > 0[0m
+  Rendered projects/index.html.erb within layouts/application (41.2ms)
+Completed 200 OK in 358ms (Views: 342.0ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-27 21:04:57 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (95.9ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (65.1ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)[0m
+  [1m[35mTodo Load (20.4ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (3.9ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  [1m[36mTodo Load (0.9ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC[0m
+  Rendered todos/index.html.erb within layouts/application (47.6ms)
+Completed 200 OK in 509ms (Views: 313.7ms | ActiveRecord: 188.0ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-27 21:04:58 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 289ms (Views: 284.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-28 10:34:17 +0000
+Processing by HomeController#index as HTML
+Redirected to http://localhost:3000/todos/index
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-28 10:34:17 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (204.1ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (67.8ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)
+  [1m[36mTodo Load (1.5ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC
+  Rendered todos/index.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 590ms (Views: 305.4ms | ActiveRecord: 277.0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:34:18 +0000
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:34:22 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 314ms (Views: 310.3ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/admin/updateuser" for 127.0.0.1 at 2015-02-28 10:34:27 +0000
+Processing by AdminController#updateuser as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KpC2Nukft2mfPG5s4bOkSMWdFzs7rAJ4Z3i7n7rFj3k=", "user"=>{"username"=>"testing", "email"=>"test", "startwork"=>"08:30", "endwork"=>"", "lunchstart"=>"13:00", "lunchlength"=>"1.0", "dailysummarymail"=>"1"}, "commit"=>"Update Details"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36m (1.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (20.8ms)[0m  UPDATE `users` SET `endwork` = NULL, `password_hash` = '$2a$10$oeI6xg3uBwyRiyrXlEPvo.KJUsrpnr/SNPsHY08P1f0Rpa5ury3j.', `password_salt` = '$2a$10$oeI6xg3uBwyRiyrXlEPvo.', `updated_at` = '2015-02-28 10:34:28' WHERE `users`.`id` = 2
+  [1m[36m (54.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/admin/index
+Completed 302 Found in 385ms (ActiveRecord: 77.5ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:34:28 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (11.2ms)
+Completed 500 Internal Server Error in 24ms
+
+ActionView::Template::Error (wrong number of arguments (1 for 0)):
+    45:   <tr><td width:10%>Username:</td><td width:40%><%= f.text_field :username, :value => @user.username %></td>
+    46:       <td width:10%>Email:</td><td width:40%><%= f.text_field :email, :value => @user.email %></td></tr>
+    47:   <tr><td width:10%>Start Time:</td><td width:40%><%= f.text_field :startwork, :value => @user.startwork.to_s(:time) %></td>
+    48:       <td width:10%>End Time:</td><td width:40%><%= f.text_field :endwork, :value => @user.endwork.to_s(:time) %></td></tr>
+    49:   <tr><td width:10%>Lunch Start:</td><td width:40%><%= f.text_field :lunchstart, :value => @user.lunchstart.to_s(:time) %></td>
+    50:       <td width:10%>Lunch Time:</td><td width:40%><%= f.text_field :lunchlength, :value => @user.lunchlength %></td></tr>
+    51: <tr><td width:10%>Send Daily Summary Emails:</td><td width:40%><%= f.check_box :dailysummarymail,  :value => @user.dailysummarymail %></td></tr>
+  app/views/admin/index.html.erb:48:in `to_s'
+  app/views/admin/index.html.erb:48:in `block in _app_views_admin_index_html_erb__979563138__632837388'
+  app/views/admin/index.html.erb:43:in `_app_views_admin_index_html_erb__979563138__632837388'
+  app/controllers/admin_controller.rb:13:in `index'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (54.1ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (17.4ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.4ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (4.0ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (136.9ms)
+
+
+Started PATCH "/admin/updateuser" for 127.0.0.1 at 2015-02-28 10:44:27 +0000
+Processing by AdminController#updateuser as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KpC2Nukft2mfPG5s4bOkSMWdFzs7rAJ4Z3i7n7rFj3k=", "user"=>{"username"=>"testing", "email"=>"test", "startwork"=>"08:30", "endwork"=>"17:30", "lunchstart"=>"13:00", "lunchlength"=>"1.0", "dailysummarymail"=>"1"}, "commit"=>"Update Details"}
+  [1m[36mUser Load (1.9ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35m (2.2ms)[0m  BEGIN
+  [1m[36mSQL (25.7ms)[0m  [1mUPDATE `users` SET `endwork` = '2000-01-01 17:30:00', `password_hash` = '$2a$10$MruL4oo4.uGFOF3fYSqUa.Z6dIaZXqyjeRAJpjFaP.mkHvzlujskO', `password_salt` = '$2a$10$MruL4oo4.uGFOF3fYSqUa.', `updated_at` = '2015-02-28 10:44:28' WHERE `users`.`id` = 2[0m
+  [1m[35m (71.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/admin/index
+Completed 302 Found in 443ms (ActiveRecord: 101.1ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:44:28 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (2.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (5.3ms)
+Completed 500 Internal Server Error in 21ms
+
+SyntaxError (/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:47: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+...end=( if @user.startwork.nil? );@output_buffer.append=( f.te...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:47: syntax error, unexpected keyword_else, expecting ')'
+...f.text_field :startwork ); else ;@output_buffer.safe_append=...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:47: syntax error, unexpected keyword_end, expecting ')'
+...fer.safe_append=' '.freeze; end ;@output_buffer.safe_append=...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:54: syntax error, unexpected keyword_end, expecting ')'
+'.freeze;   end 
+               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:64: syntax error, unexpected keyword_ensure, expecting ')'
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:66: syntax error, unexpected keyword_end, expecting ')'):
+  app/views/admin/index.html.erb:47: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+  app/views/admin/index.html.erb:47: syntax error, unexpected keyword_else, expecting ')'
+  app/views/admin/index.html.erb:47: syntax error, unexpected keyword_end, expecting ')'
+  app/views/admin/index.html.erb:54: syntax error, unexpected keyword_end, expecting ')'
+  app/views/admin/index.html.erb:64: syntax error, unexpected keyword_ensure, expecting ')'
+  app/views/admin/index.html.erb:66: syntax error, unexpected keyword_end, expecting ')'
+  app/controllers/admin_controller.rb:13:in `index'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (55.1ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (19.7ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.2ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (4.0ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (140.8ms)
+
+
+Started PATCH "/admin/updateuser" for 127.0.0.1 at 2015-02-28 10:44:30 +0000
+Processing by AdminController#updateuser as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KpC2Nukft2mfPG5s4bOkSMWdFzs7rAJ4Z3i7n7rFj3k=", "user"=>{"username"=>"testing", "email"=>"test", "startwork"=>"08:30", "endwork"=>"17:30", "lunchstart"=>"13:00", "lunchlength"=>"1.0", "dailysummarymail"=>"1"}, "commit"=>"Update Details"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  UPDATE `users` SET `password_hash` = '$2a$10$GAuvbKcY0Pi1HcNExrFHWeUeKZ5Zg89uu/.i2WYCxs7igOfK8jJFS', `password_salt` = '$2a$10$GAuvbKcY0Pi1HcNExrFHWe', `updated_at` = '2015-02-28 10:44:31' WHERE `users`.`id` = 2
+  [1m[36m (49.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/admin/index
+Completed 302 Found in 356ms (ActiveRecord: 51.0ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:44:31 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (4.9ms)
+Completed 500 Internal Server Error in 17ms
+
+SyntaxError (/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:47: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+...end=( if @user.startwork.nil? );@output_buffer.append=( f.te...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:47: syntax error, unexpected keyword_else, expecting ')'
+...f.text_field :startwork ); else ;@output_buffer.safe_append=...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:47: syntax error, unexpected keyword_end, expecting ')'
+...fer.safe_append=' '.freeze; end ;@output_buffer.safe_append=...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:54: syntax error, unexpected keyword_end, expecting ')'
+'.freeze;   end 
+               ^
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:64: syntax error, unexpected keyword_ensure, expecting ')'
+/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:66: syntax error, unexpected keyword_end, expecting ')'):
+  app/views/admin/index.html.erb:47: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+  app/views/admin/index.html.erb:47: syntax error, unexpected keyword_else, expecting ')'
+  app/views/admin/index.html.erb:47: syntax error, unexpected keyword_end, expecting ')'
+  app/views/admin/index.html.erb:54: syntax error, unexpected keyword_end, expecting ')'
+  app/views/admin/index.html.erb:64: syntax error, unexpected keyword_ensure, expecting ')'
+  app/views/admin/index.html.erb:66: syntax error, unexpected keyword_end, expecting ')'
+  app/controllers/admin_controller.rb:13:in `index'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (54.3ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (20.0ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.3ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (4.0ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (139.6ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (4.1ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (25.5ms)
+Completed 200 OK in 363ms (Views: 349.5ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:53 +0000
+
+
+Started PATCH "/admin/updateuser" for 127.0.0.1 at 2015-02-28 10:45:57 +0000
+Processing by AdminController#updateuser as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KpC2Nukft2mfPG5s4bOkSMWdFzs7rAJ4Z3i7n7rFj3k=", "user"=>{"username"=>"testing", "email"=>"test", "startwork"=>"", "endwork"=>"17:30", "lunchstart"=>"13:00", "lunchlength"=>"1.0", "dailysummarymail"=>"1"}, "commit"=>"Update Details"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36m (3.9ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (24.6ms)[0m  UPDATE `users` SET `password_hash` = '$2a$10$M7bEPalFf/NH2kKhKgl.x.3JdP0C4Qw9dsVhTZ1LLN.lWQdmnb9ia', `password_salt` = '$2a$10$M7bEPalFf/NH2kKhKgl.x.', `startwork` = NULL, `updated_at` = '2015-02-28 10:45:58' WHERE `users`.`id` = 2
+  [1m[36m (91.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/admin/index
+Completed 302 Found in 467ms (ActiveRecord: 120.3ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 291ms (Views: 286.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:45:58 +0000
+
+
+Started PATCH "/admin/updateuser" for 127.0.0.1 at 2015-02-28 10:46:13 +0000
+Processing by AdminController#updateuser as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KpC2Nukft2mfPG5s4bOkSMWdFzs7rAJ4Z3i7n7rFj3k=", "user"=>{"username"=>"testing", "email"=>"test", "startwork"=>"08:30", "endwork"=>"17:30", "lunchstart"=>"13:00", "lunchlength"=>"1.0", "dailysummarymail"=>"1"}, "commit"=>"Update Details"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (6.6ms)[0m  [1mUPDATE `users` SET `password_hash` = '$2a$10$VtkjWl7CDiR9Z.mE6mrrJ.XByWpx7HeTaf91O96Xah6o8IA/FBYAC', `password_salt` = '$2a$10$VtkjWl7CDiR9Z.mE6mrrJ.', `startwork` = '2000-01-01 08:30:00', `updated_at` = '2015-02-28 10:46:13' WHERE `users`.`id` = 2[0m
+  [1m[35m (69.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/admin/index
+Completed 302 Found in 402ms (ActiveRecord: 76.3ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:46:13 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 313ms (Views: 309.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:46:14 +0000
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:48:21 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (5.9ms)
+Completed 500 Internal Server Error in 20ms
+
+SyntaxError (/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:48: syntax error, unexpected '<'
+...ppend=( f.text_field :endwork><% else );@output_buffer.appen...
+...                               ^):
+  app/views/admin/index.html.erb:48: syntax error, unexpected '<'
+  app/controllers/admin_controller.rb:13:in `index'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (52.7ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (18.3ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.5ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (3.8ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (137.1ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:48:23 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (5.9ms)
+Completed 500 Internal Server Error in 18ms
+
+SyntaxError (/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:48: syntax error, unexpected '<'
+...ppend=( f.text_field :endwork><% else );@output_buffer.appen...
+...                               ^):
+  app/views/admin/index.html.erb:48: syntax error, unexpected '<'
+  app/controllers/admin_controller.rb:13:in `index'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (52.2ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (17.9ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.3ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (3.7ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (138.1ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:50:18 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (4.6ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (12.2ms)
+Completed 500 Internal Server Error in 35ms
+
+SyntaxError (/home/andrewrennie/RailsProjects/jarvis/app/views/admin/index.html.erb:64: syntax error, unexpected keyword_ensure, expecting end-of-input):
+  app/views/admin/index.html.erb:64: syntax error, unexpected keyword_ensure, expecting end-of-input
+  app/controllers/admin_controller.rb:13:in `index'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (51.4ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (17.7ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.3ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (3.9ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (133.2ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (17.6ms)
+Completed 200 OK in 339ms (Views: 333.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:02 +0000
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:52:39 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (3.9ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (26.8ms)
+Completed 200 OK in 338ms (Views: 329.4ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:40 +0000
+
+
+Started PATCH "/admin/updateuser" for 127.0.0.1 at 2015-02-28 10:52:46 +0000
+Processing by AdminController#updateuser as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KpC2Nukft2mfPG5s4bOkSMWdFzs7rAJ4Z3i7n7rFj3k=", "user"=>{"username"=>"testing", "email"=>"test", "startwork"=>"", "endwork"=>"", "lunchstart"=>"13:00", "lunchlength"=>"1.0", "dailysummarymail"=>"1"}, "commit"=>"Update Details"}
+  [1m[36mUser Load (7.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (17.0ms)[0m  [1mUPDATE `users` SET `endwork` = NULL, `password_hash` = '$2a$10$3A/dZRn790Vu6K9Ic59sVO6RssQumeh2wKuo1Mn8C.bZP28F1u7H2', `password_salt` = '$2a$10$3A/dZRn790Vu6K9Ic59sVO', `startwork` = NULL, `updated_at` = '2015-02-28 10:52:47' WHERE `users`.`id` = 2[0m
+  [1m[35m (67.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/admin/index
+Completed 302 Found in 424ms (ActiveRecord: 92.1ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 311ms (Views: 305.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:52:47 +0000
+
+
+Started PATCH "/admin/updateuser" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+Processing by AdminController#updateuser as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KpC2Nukft2mfPG5s4bOkSMWdFzs7rAJ4Z3i7n7rFj3k=", "user"=>{"username"=>"testing", "email"=>"test", "startwork"=>"08:30", "endwork"=>"17:30", "lunchstart"=>"13:00", "lunchlength"=>"1.0", "dailysummarymail"=>"1"}, "commit"=>"Update Details"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36m (2.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  UPDATE `users` SET `endwork` = '2000-01-01 17:30:00', `password_hash` = '$2a$10$VNczLPa2JSEUebhFAIiUBObJWlZfVWf.mOZdeiCI/BWxsrmCh/OS6', `password_salt` = '$2a$10$VNczLPa2JSEUebhFAIiUBO', `startwork` = '2000-01-01 08:30:00', `updated_at` = '2015-02-28 10:53:00' WHERE `users`.`id` = 2
+  [1m[36m (49.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/admin/index
+Completed 302 Found in 370ms (ActiveRecord: 53.4ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 324ms (Views: 319.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:00 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:01 +0000
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 331ms (Views: 320.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:45 +0000
+
+
+Started PATCH "/admin/updateuser" for 127.0.0.1 at 2015-02-28 10:53:50 +0000
+Processing by AdminController#updateuser as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KpC2Nukft2mfPG5s4bOkSMWdFzs7rAJ4Z3i7n7rFj3k=", "user"=>{"username"=>"testing", "email"=>"test", "startwork"=>"08:30", "endwork"=>"17:30", "lunchstart"=>"13:00", "lunchlength"=>"1.0", "dailysummarymail"=>"0"}, "commit"=>"Update Details"}
+  [1m[35mUser Load (1.6ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (26.4ms)[0m  UPDATE `users` SET `dailysummarymail` = 0, `password_hash` = '$2a$10$Q7J1e698Z2e.vg88WWlrRezfQIzbHScwHdHhrw7iqcGY73zq1mMaO', `password_salt` = '$2a$10$Q7J1e698Z2e.vg88WWlrRe', `updated_at` = '2015-02-28 10:53:50' WHERE `users`.`id` = 2
+  [1m[36m (98.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/admin/index
+Completed 302 Found in 450ms (ActiveRecord: 127.0ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:53:50 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 307ms (Views: 300.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:51 +0000
+
+
+Started PATCH "/admin/updateuser" for 127.0.0.1 at 2015-02-28 10:53:54 +0000
+Processing by AdminController#updateuser as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KpC2Nukft2mfPG5s4bOkSMWdFzs7rAJ4Z3i7n7rFj3k=", "user"=>{"username"=>"testing", "email"=>"test", "startwork"=>"08:30", "endwork"=>"17:30", "lunchstart"=>"13:00", "lunchlength"=>"1.0", "dailysummarymail"=>"1"}, "commit"=>"Update Details"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35m (2.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE `users` SET `dailysummarymail` = 1, `password_hash` = '$2a$10$amwejX5aXNcBN4EVzTMLluGM2MZeqPdRj5OeXgbrVryUaB8U/MXne', `password_salt` = '$2a$10$amwejX5aXNcBN4EVzTMLlu', `updated_at` = '2015-02-28 10:53:55' WHERE `users`.`id` = 2[0m
+  [1m[35m (39.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/admin/index
+Completed 302 Found in 354ms (ActiveRecord: 43.2ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 330ms (Views: 325.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-02-28 10:53:55 +0000
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-02-28 10:53:58 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (41.6ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (88.2ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 2)[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 2)[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (0.8ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  [1m[36mTodo Load (0.9ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 2) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))  ORDER BY todo_complete ASC, todo_item ASC[0m
+  Rendered todos/index.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 448ms (Views: 306.7ms | ActiveRecord: 134.3ms)

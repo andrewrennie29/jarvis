@@ -44,9 +44,9 @@
   <table style="width:600">
   <tr><td width:10%>Username:</td><td width:40%><%= f.text_field :username, :value => @user.username %></td>
       <td width:10%>Email:</td><td width:40%><%= f.text_field :email, :value => @user.email %></td></tr>
-  <tr><td width:10%>Start Time:</td><td width:40%><%= f.text_field :startwork, :value => @user.startwork.to_s(:time) %></td>
-      <td width:10%>End Time:</td><td width:40%><%= f.text_field :endwork, :value => @user.endwork.to_s(:time) %></td></tr>
-  <tr><td width:10%>Lunch Start:</td><td width:40%><%= f.text_field :lunchstart, :value => @user.lunchstart.to_s(:time) %></td>
+  <tr><td width:10%>Start Time:</td><td width:40%><% if @user.startwork.nil? %><%= f.text_field :startwork %><% else %> <%= f.text_field :startwork, :value => @user.startwork.to_s(:time) %> <% end %></td>
+      <td width:10%>End Time:</td><td width:40%><% if @user.endwork.nil? %><%= f.text_field :endwork %><% else %> <%= f.text_field :endwork, :value => @user.endwork.to_s(:time) %> <% end %></td></tr>
+  <tr><td width:10%>Lunch Start:</td><td width:40%><% if @user.lunchstart.nil? %><%= f.text_field :lunchstart %><% else %> <%= f.text_field :lunchstart, :value => @user.lunchstart.to_s(:time) %> <% end %></td>
       <td width:10%>Lunch Time:</td><td width:40%><%= f.text_field :lunchlength, :value => @user.lunchlength %></td></tr>
 <tr><td width:10%>Send Daily Summary Emails:</td><td width:40%><%= f.check_box :dailysummarymail,  :value => @user.dailysummarymail %></td></tr>
   <tr><td width:80%><br><%= f.submit "Update Details", class: "btn btn-primary" %></td><td width:10%><br><%= link_to 'Back', :back %></td></tr>
