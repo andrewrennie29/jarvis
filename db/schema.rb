@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227205145) do
+ActiveRecord::Schema.define(version: 20150301174601) do
 
   create_table "todos", force: true do |t|
     t.text     "todo_item"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150227205145) do
     t.integer  "user_id"
     t.date     "assigneddate"
     t.boolean  "latestrecur"
+    t.datetime "lateststart"
   end
 
   create_table "users", force: true do |t|

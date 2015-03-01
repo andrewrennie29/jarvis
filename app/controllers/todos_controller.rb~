@@ -8,13 +8,8 @@ class TodosController < ApplicationController
 
     else
       
-      @user=User.find_by_id(session[:user_id])
-      if @user.id == 1
-        @user.password='Getstuffdone!'
-        @user.save
-      end
       session[:return_route] = index_path
-      Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null")
+      Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null)
       Todo.where("todo_urgence < 0 and user_id = ?", session[:user_id]).update_all todo_urgence: 11
       Todo.where("todo_complete is null").update_all todo_complete: false
       Todo.where("todo_complete is true AND todo_deadline < curdate() and user_id = ?", session[:user_id]).update_all todo_urgence: 0

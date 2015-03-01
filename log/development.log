@@ -9737,3 +9737,187 @@ Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-01 17:16:51
 
 
 Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-03-01 17:16:51 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to Addcolumnsforweekview (20150301174601)
+  [1m[35m (457.2ms)[0m  ALTER TABLE `todos` ADD `lateststart` datetime
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (20.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150301174601')
+  [1m[36m (72.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-01 17:56:34 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by HomeController#index as HTML
+Redirected to http://localhost:3000/todos/index
+Completed 302 Found in 67ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-01 17:56:34 +0000
+Processing by TodosController#index as HTML
+  [1m[35m5 (26.2ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null and user_id = ?
+Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?' at line 1: UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null and user_id = ?
+Completed 500 Internal Server Error in 34ms
+
+ActiveRecord::StatementInvalid (Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?' at line 1: UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null and user_id = ?):
+  app/controllers/todos_controller.rb:12:in `index'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (36.7ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (13.5ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.2ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (3.6ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (117.6ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-01 17:57:11 +0000
+
+SyntaxError (/home/andrewrennie/RailsProjects/jarvis/app/controllers/todos_controller.rb:13: syntax error, unexpected tIDENTIFIER, expecting ')'
+      Todo.where("todo_urgence < 0 and user_id = ?", sessio...
+                              ^
+/home/andrewrennie/RailsProjects/jarvis/app/controllers/todos_controller.rb:13: syntax error, unexpected ',', expecting keyword_end
+...o_urgence < 0 and user_id = ?", session[:user_id]).update_al...
+...                               ^
+/home/andrewrennie/RailsProjects/jarvis/app/controllers/todos_controller.rb:13: syntax error, unexpected ')', expecting keyword_end
+...ser_id = ?", session[:user_id]).update_all todo_urgence: 11
+...                               ^):
+  app/controllers/todos_controller.rb:13: syntax error, unexpected tIDENTIFIER, expecting ')'
+  app/controllers/todos_controller.rb:13: syntax error, unexpected ',', expecting keyword_end
+  app/controllers/todos_controller.rb:13: syntax error, unexpected ')', expecting keyword_end
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (30.7ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (13.1ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (4.6ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (3.8ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (110.7ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-01 17:57:31 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (48.8ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 5)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 5)
+  [1m[36mTodo Load (19.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  Rendered todos/index.html.erb within layouts/application (129.4ms)
+Completed 500 Internal Server Error in 407ms
+
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sprockets.
+Load paths:
+  /home/andrewrennie/RailsProjects/jarvis/app/assets/images
+  /home/andrewrennie/RailsProjects/jarvis/app/assets/javascripts
+  /home/andrewrennie/RailsProjects/jarvis/app/assets/stylesheets
+  /home/andrewrennie/RailsProjects/jarvis/vendor/assets/javascripts
+  /home/andrewrennie/RailsProjects/jarvis/vendor/assets/stylesheets
+  /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/assets/javascripts
+  /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/bootstrap3-datetimepicker-rails-4.0.0/vendor/assets/javascripts
+  /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/bootstrap3-datetimepicker-rails-4.0.0/vendor/assets/stylesheets
+  /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/momentjs-rails-2.9.0/vendor/assets/javascripts
+  /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/bootstrap-datepicker-rails-1.3.1.1/vendor/assets/javascripts
+  /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/bootstrap-datepicker-rails-1.3.1.1/vendor/assets/stylesheets
+  /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/turbolinks-2.5.3/lib/assets/javascripts
+  /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/jquery-rails-3.1.2/vendor/assets/javascripts
+  /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/coffee-rails-4.1.0/lib/assets/javascripts
+  (in /home/andrewrennie/RailsProjects/jarvis/app/assets/stylesheets/todos.scss:5)):
+    2: <html>
+    3: <head>
+    4:   <title>Jarvis</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/todos.scss:5
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___197792337_95717880'
+  app/controllers/todos_controller.rb:22:in `index'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (71.2ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (24.9ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.3ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (4.2ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (162.0ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-01 17:58:01 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (60.6ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 5)[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 5)[0m
+  [1m[35mTodo Load (14.5ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  Rendered todos/index.html.erb within layouts/application (27.6ms)
+Completed 200 OK in 1103ms (Views: 1017.4ms | ActiveRecord: 78.4ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/todos.css?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.css?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-01 17:58:02 +0000
+
+
+Started GET "/projects/index" for 127.0.0.1 at 2015-03-01 17:58:05 +0000
+Processing by ProjectsController#index as HTML
+  [1m[36mTodo Load (23.4ms)[0m  [1mSELECT todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete=true,0,1)) as todo_item_count, round(sum(if(todo_complete=true,0,todo_timeremaining)),2) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(if((latestrecur=true or latestrecur is null),todo_timerequired,0)),0) as percentage_complete FROM `todos`  WHERE (todo_project is not null and todo_project !='' AND user_id = 5) GROUP BY todo_project HAVING sum(if(todo_complete=true,0,1)) > 0[0m
+  Rendered projects/index.html.erb within layouts/application (33.4ms)
+Completed 200 OK in 505ms (Views: 478.5ms | ActiveRecord: 23.4ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-03-01 17:58:06 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 5 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (36.7ms)
+Completed 200 OK in 570ms (Views: 476.5ms | ActiveRecord: 49.5ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-01 17:58:08 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (142.5ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 5)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 5)
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  Rendered todos/index.html.erb within layouts/application (21.1ms)
+Completed 200 OK in 721ms (Views: 566.3ms | ActiveRecord: 146.8ms)
