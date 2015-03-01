@@ -4,7 +4,6 @@ def index
 
 if session[:user_id].nil?
 
-session[:user_id] = nil
 
 render :index
 
