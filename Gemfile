@@ -38,7 +38,6 @@ gem 'sass-rails', '>= 3.2'
 gem 'autoprefixer-rails'
 
 #adding bootstrap datepickers
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'bootstrap-datepicker-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
