@@ -10,8 +10,6 @@ gem 'puma'
 gem 'rails', '4.1.8'
 # Use mysql as the database for Active Record
 gem 'mysql2'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
 
 #gem 'bootstrap-sass', '~> 3.3.3'
 
@@ -33,6 +31,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7', require: 'bcrypt'
+
+#bootstrap 3
+gem 'bootstrap-sass', '~> 3.3.2'
+gem 'sass-rails', '>= 3.2'
+gem 'autoprefixer-rails'
 
 #adding bootstrap datepickers
 gem 'bootstrap-datepicker-rails'

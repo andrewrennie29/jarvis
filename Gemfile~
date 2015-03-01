@@ -10,8 +10,6 @@ gem 'puma'
 gem 'rails', '4.1.8'
 # Use mysql as the database for Active Record
 gem 'mysql2'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
 
 #gem 'bootstrap-sass', '~> 3.3.3'
 
@@ -34,14 +32,22 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7', require: 'bcrypt'
 
-#adding bootstrap datepick
+#bootstrap 3
+gem 'bootstrap-sass', '~> 3.3.2'
+gem 'sass-rails', '>= 3.2'
+
+#adding bootstrap datepickers
 gem 'bootstrap-datepicker-rails'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
