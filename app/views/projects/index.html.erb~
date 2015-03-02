@@ -12,11 +12,18 @@
 
 <%= form_for @new_todo, :url => { :action => "add", :controller => "todos" } do |f| %>
 
-  <%= f.text_field :todo_item %>
-  <%= f.submit "Add To Do", class: "btn btn-primary" %>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <%= f.text_field :todo_item, class: "form-control", placeholder: "Get this done..." %>
+      <span class="input-group-btn">
+        <%= f.submit "Add To Do", class: "btn btn-primary" %>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
 
 <% end %>
-
 <% if !flash[:error].nil? %>
 
   <div class="alert alert-error">

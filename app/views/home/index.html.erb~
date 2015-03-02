@@ -1,0 +1,35 @@
+<title>Shared Todo App</title>
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-12">
+
+<h1>Welcome To My Todos</h1>
+
+<hr>
+
+<div class="col-md-4">
+
+<div class="well">
+
+Existing User? Sign in here.<p>
+
+<%= form_tag login_path do%>
+<%= label_tag :username %> <%= text_field_tag :username %>
+<%= label_tag :password %> <%= password_field_tag :password %>
+<%=submit_tag "Login", class: 'btn btn-primary' %>
+<% end %>
+
+<p> New User? Register <%= link_to 'here', signmeup_path %>.
+
+</div> <! -- well -->
+
+</div> <!-- span4 -->
+
+</div> <!-- span12 -->
+
+</div> <!-- row -->
+
+</div> <!-- container -->
