@@ -96,6 +96,7 @@
 					    </div><!-- /input-group -->
 					
  					 </td>
+					<td>
 						<% if t.todo_complete == true %>
           
 							<strike><%= t.todo_item %></strike>

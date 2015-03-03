@@ -106,7 +106,7 @@
 							<%= link_to t.todo_item, details_path(t.id) %>
 						<% end %>
 					</td>
-					<td><%= t.todo_deadline %></td>
+					<td><%= t.todo_deadline.to_date %></td>
 					<td><%= t.todo_importance %></td>
 					<td><%= if t.todo_complete == true then 0 else number_with_precision(t.todo_timeremaining, precision: 2) end %></td>
 					<td><%= (if t.todo_complete == true then 100 else (100-(t.todo_timeremaining*100/t.todo_timerequired)) end).to_i %>%</td>

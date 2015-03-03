@@ -101,7 +101,6 @@
 					
  					 </td>
 					<td>
-<% if t.todo_recurring == true %> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span><% end %>	
 					<% if t.todo_complete == true %>
           
 						<strike><%= t.todo_item %></strike>
@@ -111,6 +110,7 @@
 						<%= link_to t.todo_item, details_path(t.id) %>
 
 					<% end %>
+					<% if t.todo_recurring == true %> <p class="text-right"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></p><% end %>
 					</td>
 					<td><%= t.todo_for %></td>
 					<td>
@@ -121,7 +121,7 @@
 							<%= link_to t.todo_project, projectdetails_path(t.todo_project) %>
 							<% end %>
 						</td>
-					<td><%= t.todo_deadline %></td>
+					<td><%= t.todo_deadline.to_s(:date) %></td>
 
 				</tr>
 
@@ -169,7 +169,7 @@
 					
  					 </td>
 					<td>
-					<% if t.todo_recurring == true %> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span><% end %>	
+					
 					<% if t.todo_complete == true %>
           
 						<strike><%= t.todo_item %></strike>
@@ -179,6 +179,7 @@
 						<%= link_to t.todo_item, details_path(t.id) %>
 
 					<% end %>
+					<% if t.todo_recurring == true %> <p class="text-right"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></p><% end %>	
 					</td>
 					<td><%= t.todo_for %></td>
 					<td>
@@ -189,7 +190,7 @@
 							<%= link_to t.todo_project, projectdetails_path(t.todo_project) %>
 							<% end %>
 						</td>
-					<td><%= t.todo_deadline %></td>
+					<td><%= t.todo_deadline.to_date %></td>
 
 				</tr>
 

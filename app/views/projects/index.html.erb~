@@ -24,6 +24,7 @@
 </div><!-- /.row -->
 
 <% end %>
+
 <% if !flash[:error].nil? %>
 
   <div class="alert alert-error">
