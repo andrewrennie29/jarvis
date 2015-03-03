@@ -101,6 +101,7 @@
 					
  					 </td>
 					<td>
+<% if t.todo_recurring == true %> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span><% end %>	
 					<% if t.todo_complete == true %>
           
 						<strike><%= t.todo_item %></strike>

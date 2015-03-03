@@ -52,16 +52,16 @@
 <div class='col-sm-6'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker1'>
-                    <%= f.text_field :todo_deadline, :value => @details_todo.todo_deadline %>
+                    <%= f.text_field :todo_deadline, :value => (@details_todo.todo_deadline).strftime("%m/%d/%Y %I:%M %p") %>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                    </span>	
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
+	<script type="text/javascript">
             $(function () {
-                $('#datetimepicker1').datetimepicker();
-            showTodayButton = true});
+                $('#datetimepicker1').datetimepicker({ defaultDate: "<%= (@details_todo.todo_deadline).strftime("%m/%d/%Y %I:%M %p") %>" });
+            });
         </script>
 
 </td></tr>
