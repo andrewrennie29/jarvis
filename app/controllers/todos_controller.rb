@@ -26,8 +26,17 @@ class TodosController < ApplicationController
   end
 
   def add
+    
+    u=User.find_by_id(session[:user_id])
+    d=Date.today
+    if u.endwork.nil?
+	dt=Time.new(d.year,d.month,d.day,17,0,0)
+    else
+	t=u.endwork
+        dt=Time.new(d.year,d.month,d.day,t.hour,t.min,t.sec)
+    end
 
-    todo = Todo.create(:todo_item => params[:todo][:todo_item], :user_id => session[:user_id], :todo_project => params[:todo][:todo_project], :todo_deadline => Date.today.to_s, :todo_complete => false)
+    todo = Todo.create(:todo_item => params[:todo][:todo_item], :user_id => session[:user_id], :todo_project => params[:todo][:todo_project], :todo_deadline => dt, :todo_complete => false)
     unless todo.valid?
       flash[:error] = todo.errors.full_messages.join("<br>").html_safe
     else
@@ -178,7 +187,7 @@ class TodosController < ApplicationController
       t.todo_status = (params[:todo][:todo_status].delete('%').to_f)/100
     end
 
-    t.todo_deadline = params[:todo][:todo_deadline]
+    t.todo_deadline = (params[:todo][:todo_deadline]).to_datetime
 
     t.todo_recurring=params[:todo][:todo_recurring]
     
@@ -207,7 +216,7 @@ class TodosController < ApplicationController
 
     t.todo_timeremaining=(1-t.todo_status)*t.todo_timerequired
 
-    t.todo_urgence=(10/((t.todo_deadline - Date.today).to_f - t.todo_timeremaining/8)).to_f
+    t.todo_urgence=(10/((t.todo_deadline - DateTime.now).to_f - t.todo_timeremaining/8)).to_f
 
     if t.todo_urgence < 0
 

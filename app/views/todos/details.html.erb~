@@ -52,7 +52,7 @@
 <div class='col-sm-6'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker1'>
-                    <%= f.text_field :todo_deadline %>
+                    <%= f.text_field :todo_deadline, :value => @details_todo.todo_deadline %>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>

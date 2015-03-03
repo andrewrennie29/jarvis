@@ -19680,3 +19680,851 @@ Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-03-03 19:14:52 +0000
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-03 19:14:52 +0000
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-03 19:33:47 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by TodosController#index as HTML
+  [1m[35m (45.5ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (1.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 5)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (52.3ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 5)[0m
+  [1m[35mTodo Load (1.1ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (0.8ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  Rendered todos/index.html.erb within layouts/application (89.6ms)
+Completed 200 OK in 1459ms (Views: 1292.0ms | ActiveRecord: 106.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-03-03 19:33:49 +0000
+
+
+Started GET "/todos/details/9" for 127.0.0.1 at 2015-03-03 19:33:52 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 9 LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (id = '9')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 9 LIMIT 1[0m
+  Rendered todos/details.html.erb within layouts/application (30.8ms)
+Completed 200 OK in 817ms (Views: 773.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-03 19:33:57 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (87.2ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 5)[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (50.8ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 5)[0m
+  [1m[35mTodo Load (1.1ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.9ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  Rendered todos/index.html.erb within layouts/application (23.7ms)
+Completed 200 OK in 878ms (Views: 728.9ms | ActiveRecord: 142.0ms)
+
+
+Started GET "/projects/index" for 127.0.0.1 at 2015-03-03 19:43:24 +0000
+Processing by ProjectsController#index as HTML
+  [1m[36mTodo Load (2.0ms)[0m  [1mSELECT todo_project, max(todo_deadline) as project_deadline, sum(if(todo_complete=true,0,1)) as todo_item_count, round(sum(if(todo_complete=true,0,todo_timeremaining)),2) as time_remaining, 100-round(sum(if(todo_complete=true,0,todo_timeremaining))*100/sum(if((latestrecur=true or latestrecur is null),todo_timerequired,0)),0) as percentage_complete FROM `todos`  WHERE (todo_project is not null and todo_project !='' AND user_id = 5) GROUP BY todo_project HAVING sum(if(todo_complete=true,0,1)) > 0[0m
+  Rendered projects/index.html.erb within layouts/application (105.7ms)
+Completed 200 OK in 784ms (Views: 779.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/projects/details/Todo%20List" for 127.0.0.1 at 2015-03-03 19:45:16 +0000
+Processing by ProjectsController#projectdetails as HTML
+  Parameters: {"project"=>"Todo List"}
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (todo_project = 'Todo List' AND user_id = 5 AND (latestrecur=true or latestrecur is null))
+  [1m[36mTodo Load (1.1ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (todo_project = 'Todo List' AND user_id = 5 AND (latestrecur=true or latestrecur is null))  ORDER BY todo_complete ASC, todo_deadline ASC, todo_item ASC[0m
+  Rendered projects/details.html.erb within layouts/application (20.1ms)
+Completed 200 OK in 746ms (Views: 739.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/todos/details/9" for 127.0.0.1 at 2015-03-03 19:45:18 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mTodo Load (0.4ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 9 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '9')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 9 LIMIT 1
+  Rendered todos/details.html.erb within layouts/application (13.6ms)
+Completed 200 OK in 736ms (Views: 728.6ms | ActiveRecord: 0.7ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to ChangeDeadlineType (20150303194645)
+  [1m[35m (309.5ms)[0m  ALTER TABLE `todos` CHANGE `todo_deadline` `todo_deadline` datetime DEFAULT NULL
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150303194645')
+  [1m[36m (45.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-03 19:50:32 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by TodosController#index as HTML
+  [1m[35m (41.0ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 5)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (42.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 5)[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (0.8ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  Rendered todos/index.html.erb within layouts/application (52.7ms)
+Completed 200 OK in 844ms (Views: 736.3ms | ActiveRecord: 91.0ms)
+
+
+Started POST "/todos/add" for 127.0.0.1 at 2015-03-03 19:50:38 +0000
+Processing by TodosController#add as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aeUXtLlVKgRl0JuwWhh5qYkliSIdxJh7k+MFf8uJERY=", "todo"=>{"todo_item"=>"test datetime"}, "commit"=>"Add To Do"}
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `todos` (`created_at`, `todo_complete`, `todo_deadline`, `todo_item`, `updated_at`, `user_id`) VALUES ('2015-03-03 19:50:38', 0, '2015-03-03 00:00:00', 'test datetime', '2015-03-03 19:50:38', 5)
+  [1m[36m (106.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/todos/details/11
+Completed 302 Found in 124ms (ActiveRecord: 108.4ms)
+
+
+Started GET "/todos/details/11" for 127.0.0.1 at 2015-03-03 19:50:38 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mTodo Load (0.8ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 11 LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '11')[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 11 LIMIT 1
+  Rendered todos/details.html.erb within layouts/application (22.6ms)
+Completed 200 OK in 748ms (Views: 738.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:39 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:40 +0000
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:40 +0000
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:40 +0000
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-03-03 19:50:40 +0000
+
+
+Started PATCH "/todos/updatetodo" for 127.0.0.1 at 2015-03-03 19:51:03 +0000
+Processing by TodosController#updatetodo as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aeUXtLlVKgRl0JuwWhh5qYkliSIdxJh7k+MFf8uJERY=", "todo"=>{"todo_id"=>"11", "todo_item"=>"test datetime", "todo_status"=>"0%", "todo_for"=>"Me", "todo_deadline"=>"03/18/2015 7:50 PM", "todo_category"=>"Work", "todo_project"=>"Todo List", "todo_timerequired"=>"1", "todo_importance"=>"1", "todo_recurring"=>"0", "todo_frequency"=>"", "todo_enddate"=>""}, "commit"=>"Update To Do"}
+  [1m[36mTodo Load (0.4ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 11 LIMIT 1[0m
+Completed 500 Internal Server Error in 15ms
+
+ArgumentError (argument out of range):
+  app/controllers/todos_controller.rb:181:in `updatetodo'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.4ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.5ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.0ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (89.6ms)
+Cannot render console with content type application/x-www-form-urlencodedAllowed content types: [#<Mime::Type:0xa0bbcec @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0xa0bb760 @synonyms=[], @symbol=:text, @string="text/plain">]
+
+
+Started PATCH "/todos/updatetodo" for 127.0.0.1 at 2015-03-03 19:53:41 +0000
+Processing by TodosController#updatetodo as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aeUXtLlVKgRl0JuwWhh5qYkliSIdxJh7k+MFf8uJERY=", "todo"=>{"todo_id"=>"11", "todo_item"=>"test datetime", "todo_status"=>"0%", "todo_for"=>"Me", "todo_deadline"=>"03/18/2015 7:50 PM", "todo_category"=>"Work", "todo_project"=>"Todo List", "todo_timerequired"=>"1", "todo_importance"=>"1", "todo_recurring"=>"0", "todo_frequency"=>"", "todo_enddate"=>""}, "commit"=>"Update To Do"}
+  [1m[35mTodo Load (0.4ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 11 LIMIT 1
+Completed 500 Internal Server Error in 55ms
+
+ArgumentError (wrong number of arguments (1 for 0)):
+  app/controllers/todos_controller.rb:181:in `to_s'
+  app/controllers/todos_controller.rb:181:in `updatetodo'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.2ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.2ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.8ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (56.4ms)
+Cannot render console with content type application/x-www-form-urlencodedAllowed content types: [#<Mime::Type:0xa0bbcec @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0xa0bb760 @synonyms=[], @symbol=:text, @string="text/plain">]
+
+
+Started GET "/todos/details/11" for 127.0.0.1 at 2015-03-03 19:54:18 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mTodo Load (0.5ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 11 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (id = '11')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 11 LIMIT 1[0m
+  Rendered todos/details.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 802ms (Views: 742.4ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:19 +0000
+
+
+Started PATCH "/todos/updatetodo" for 127.0.0.1 at 2015-03-03 19:54:31 +0000
+Processing by TodosController#updatetodo as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aeUXtLlVKgRl0JuwWhh5qYkliSIdxJh7k+MFf8uJERY=", "todo"=>{"todo_id"=>"11", "todo_item"=>"test datetime", "todo_status"=>"0%", "todo_for"=>"me", "todo_deadline"=>"03/03/2015 7:54 PM", "todo_category"=>"Work", "todo_project"=>"Todo List", "todo_timerequired"=>"1", "todo_importance"=>"1", "todo_recurring"=>"0", "todo_frequency"=>"", "todo_enddate"=>""}, "commit"=>"Update To Do"}
+  [1m[35mTodo Load (3.0ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 11 LIMIT 1
+Completed 500 Internal Server Error in 9ms
+
+ArgumentError (wrong number of arguments (1 for 0)):
+  app/controllers/todos_controller.rb:181:in `to_s'
+  app/controllers/todos_controller.rb:181:in `updatetodo'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.4ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (9.7ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.9ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (73.8ms)
+Cannot render console with content type application/x-www-form-urlencodedAllowed content types: [#<Mime::Type:0xa0bbcec @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0xa0bb760 @synonyms=[], @symbol=:text, @string="text/plain">]
+
+
+Started GET "/todos/details/9" for 127.0.0.1 at 2015-03-03 19:57:21 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 9 LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (id = '9')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 9 LIMIT 1[0m
+  Rendered todos/details.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 815ms (Views: 750.2ms | ActiveRecord: 9.2ms)
+
+
+Started PATCH "/todos/updatetodo" for 127.0.0.1 at 2015-03-03 19:57:27 +0000
+Processing by TodosController#updatetodo as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aeUXtLlVKgRl0JuwWhh5qYkliSIdxJh7k+MFf8uJERY=", "todo"=>{"todo_id"=>"9", "todo_item"=>"Test", "todo_status"=>"0%", "todo_for"=>"Me", "todo_deadline"=>"03/03/2015 7:57 PM", "todo_category"=>"Work", "todo_project"=>"Todo List", "todo_timerequired"=>"1.0", "todo_importance"=>"1", "todo_recurring"=>"0", "todo_frequency"=>"", "todo_enddate"=>""}, "commit"=>"Update To Do"}
+  [1m[35mTodo Load (0.9ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 9 LIMIT 1
+Completed 500 Internal Server Error in 17ms
+
+NoMethodError (undefined method `-@' for Tue, 03 Mar 2015:Date):
+  app/controllers/todos_controller.rb:210:in `updatetodo'
+
+
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.3ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.3ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.3ms)
+  Rendered /home/andrewrennie/.rvm/gems/ruby-2.1.5/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (72.7ms)
+Cannot render console with content type application/x-www-form-urlencodedAllowed content types: [#<Mime::Type:0xa0bbcec @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0xa0bb760 @synonyms=[], @symbol=:text, @string="text/plain">]
+
+
+Started PATCH "/todos/updatetodo" for 127.0.0.1 at 2015-03-03 19:59:59 +0000
+Processing by TodosController#updatetodo as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aeUXtLlVKgRl0JuwWhh5qYkliSIdxJh7k+MFf8uJERY=", "todo"=>{"todo_id"=>"9", "todo_item"=>"Test", "todo_status"=>"0%", "todo_for"=>"Me", "todo_deadline"=>"03/03/2015 7:57 PM", "todo_category"=>"Work", "todo_project"=>"Todo List", "todo_timerequired"=>"1.0", "todo_importance"=>"1", "todo_recurring"=>"0", "todo_frequency"=>"", "todo_enddate"=>""}, "commit"=>"Update To Do"}
+  [1m[36mTodo Load (0.4ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 9 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE `todos` SET `todo_deadline` = '2015-03-03 19:57:00', `todo_urgence` = 11.0, `updated_at` = '2015-03-03 19:59:59' WHERE `todos`.`id` = 9[0m
+  [1m[35m (40.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/todos/index
+Completed 302 Found in 114ms (ActiveRecord: 46.6ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-03 19:59:59 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (50.3ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 5)
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (50.8ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 5)
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (0.9ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (3.5ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  Rendered todos/index.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 875ms (Views: 759.3ms | ActiveRecord: 107.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:00 +0000
+
+
+Started GET "/todos/details/9" for 127.0.0.1 at 2015-03-03 20:00:53 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mTodo Load (0.8ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 9 LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '9')[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 9 LIMIT 1
+  Rendered todos/details.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 730ms (Views: 720.4ms | ActiveRecord: 1.5ms)
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 5 LIMIT 1[0m
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-03 20:15:07 +0000
+Processing by TodosController#index as HTML
+  [1m[36m (44.6ms)[0m  [1mUPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 5)
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)[0m
+  [1m[35mSQL (42.2ms)[0m  UPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 5)
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))[0m
+  Rendered todos/index.html.erb within layouts/application (51.7ms)
+Completed 200 OK in 904ms (Views: 792.7ms | ActiveRecord: 94.8ms)
+
+
+Started POST "/todos/add" for 127.0.0.1 at 2015-03-03 20:15:18 +0000
+Processing by TodosController#add as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aeUXtLlVKgRl0JuwWhh5qYkliSIdxJh7k+MFf8uJERY=", "todo"=>{"todo_item"=>"test datetime in new todo"}, "commit"=>"Add To Do"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 5 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO `todos` (`created_at`, `todo_complete`, `todo_deadline`, `todo_item`, `updated_at`, `user_id`) VALUES ('2015-03-03 20:15:18', 0, '2015-03-03 17:00:00', 'test datetime in new todo', '2015-03-03 20:15:18', 5)
+  [1m[36m (66.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/todos/details/12
+Completed 302 Found in 138ms (ActiveRecord: 73.7ms)
+
+
+Started GET "/todos/details/12" for 127.0.0.1 at 2015-03-03 20:15:18 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"12"}
+  [1m[35mTodo Load (0.9ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 12 LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `todos`  WHERE (id = '12')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 12 LIMIT 1
+  Rendered todos/details.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 738ms (Views: 728.8ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:19 +0000
+  [1m[35mTodo Load (0.3ms)[0m  SELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 12 LIMIT 1
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-03-03 20:15:49 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 5 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 736ms (Views: 731.0ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/admin/updateuser" for 127.0.0.1 at 2015-03-03 20:15:54 +0000
+Processing by AdminController#updateuser as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aeUXtLlVKgRl0JuwWhh5qYkliSIdxJh7k+MFf8uJERY=", "user"=>{"username"=>"testtest", "email"=>"testtest", "startwork"=>"08:30", "endwork"=>"17:30", "lunchstart"=>"", "lunchlength"=>"", "dailysummarymail"=>"0"}, "commit"=>"Update Details"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 5 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (9.6ms)[0m  UPDATE `users` SET `endwork` = '2000-01-01 17:30:00', `updated_at` = '2015-03-03 20:15:54' WHERE `users`.`id` = 5
+  [1m[36m (66.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/admin/index
+Completed 302 Found in 94ms (ActiveRecord: 76.3ms)
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-03-03 20:15:54 +0000
+Processing by AdminController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 5 LIMIT 1
+  Rendered admin/index.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 741ms (Views: 736.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-03-03 20:15:55 +0000
+
+
+Started GET "/admin/index" for 127.0.0.1 at 2015-03-03 20:15:57 +0000
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 5 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 719ms (Views: 714.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-03 20:16:00 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (60.4ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 5)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (51.0ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 5)[0m
+  [1m[35mTodo Load (1.0ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (0.9ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  Rendered todos/index.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 856ms (Views: 733.1ms | ActiveRecord: 115.1ms)
+
+
+Started POST "/todos/add" for 127.0.0.1 at 2015-03-03 20:16:11 +0000
+Processing by TodosController#add as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aeUXtLlVKgRl0JuwWhh5qYkliSIdxJh7k+MFf8uJERY=", "todo"=>{"todo_item"=>"updated todo time"}, "commit"=>"Add To Do"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 5 LIMIT 1[0m
+  [1m[35m (1.7ms)[0m  BEGIN
+  [1m[36mSQL (1.4ms)[0m  [1mINSERT INTO `todos` (`created_at`, `todo_complete`, `todo_deadline`, `todo_item`, `updated_at`, `user_id`) VALUES ('2015-03-03 20:16:11', 0, '2015-03-03 17:30:00', 'updated todo time', '2015-03-03 20:16:11', 5)[0m
+  [1m[35m (39.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/todos/details/13
+Completed 302 Found in 67ms (ActiveRecord: 42.8ms)
+
+
+Started GET "/todos/details/13" for 127.0.0.1 at 2015-03-03 20:16:11 +0000
+Processing by TodosController#details as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mTodo Load (1.7ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 13 LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (id = '13')
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 13 LIMIT 1[0m
+  Rendered todos/details.html.erb within layouts/application (12.4ms)
+Completed 200 OK in 753ms (Views: 739.4ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/todos.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-03-03 20:16:12 +0000
+  [1m[36mTodo Load (0.4ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`id` = 13 LIMIT 1[0m
+
+
+Started GET "/todos/index" for 127.0.0.1 at 2015-03-03 20:16:27 +0000
+Processing by TodosController#index as HTML
+  [1m[35m (40.3ms)[0m  UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 11 WHERE (todo_urgence < 0 and user_id = 5)[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `todos` SET `todos`.`todo_complete` = 0 WHERE (todo_complete is null)
+  [1m[36mSQL (40.2ms)[0m  [1mUPDATE `todos` SET `todos`.`todo_urgence` = 0 WHERE (todo_complete is true AND todo_deadline < curdate() and user_id = 5)[0m
+  [1m[35mTodo Load (1.1ms)[0m  SELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' AND todo_urgence>0 AND (todo_urgence >= 11 OR todo_deadline = curdate()))  ORDER BY todo_complete ASC, (todo_urgence + todo_importance) DESC, todo_item ASC
+  [1m[36mTodo Load (1.4ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category<>'Personal' and todos.todo_deadline > curdate() and todos.todo_deadline < ADDDATE(SUBDATE(curdate(), interval DAYOFWEEK(CURDATE()) - 1 DAY), INTERVAL 1 WEEK))[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM `todos`  WHERE (user_id = 5) AND (todos.todo_category='Personal' and (todos.todo_complete = False or todos.updated_at>=curdate() or todos.todo_complete is null))
+  Rendered todos/index.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 833ms (Views: 741.3ms | ActiveRecord: 85.1ms)

@@ -9,7 +9,7 @@ class TodosController < ApplicationController
     else
       
       session[:return_route] = index_path
-      Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null)
+      Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - curdate()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null")
       Todo.where("todo_urgence < 0 and user_id = ?", session[:user_id]).update_all todo_urgence: 11
       Todo.where("todo_complete is null").update_all todo_complete: false
       Todo.where("todo_complete is true AND todo_deadline < curdate() and user_id = ?", session[:user_id]).update_all todo_urgence: 0
@@ -178,7 +178,7 @@ class TodosController < ApplicationController
       t.todo_status = (params[:todo][:todo_status].delete('%').to_f)/100
     end
 
-    t.todo_deadline = params[:todo][:todo_deadline]
+    t.todo_deadline = (params[:todo][:todo_deadline]).to_datetime
 
     t.todo_recurring=params[:todo][:todo_recurring]
     
@@ -207,7 +207,7 @@ class TodosController < ApplicationController
 
     t.todo_timeremaining=(1-t.todo_status)*t.todo_timerequired
 
-    t.todo_urgence=(10/((t.todo_deadline - Date.today).to_f - t.todo_timeremaining/8)).to_f
+    t.todo_urgence=(10/((t.todo_deadline - DateTime.now).to_f - t.todo_timeremaining/8)).to_f
 
     if t.todo_urgence < 0
 

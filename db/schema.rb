@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301174601) do
+ActiveRecord::Schema.define(version: 20150303194645) do
 
   create_table "todos", force: true do |t|
     t.text     "todo_item"
     t.string   "todo_for"
-    t.date     "todo_deadline"
+    t.datetime "todo_deadline"
     t.string   "todo_category"
     t.string   "todo_project"
     t.integer  "todo_importance"
