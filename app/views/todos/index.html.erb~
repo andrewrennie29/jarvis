@@ -10,7 +10,7 @@
 
 <hr>
 
-<%= form_for @new_todo, :url => { :action => "todos/add" } do |f| %>
+<%= form_for @new_todo, :url => { :action => "add", :controller => "todos" } do |f| %>
 
 <div class="row">
   <div class="col-lg-6">
@@ -88,7 +88,18 @@
 				
 				<tr>	
 					
-					<td><%= check_box_tag "todos_checkbox[]",t.id %> <%= hidden_field_tag "todos_status[:id][]", t.id %><%= text_field_tag "todos_status[:status][]", (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'input-mini' %></td>
+					<td>
+<%= hidden_field_tag "todos_status[:id][]", t.id %>
+					<div class="col-md-8">
+					    <div class="input-group">
+					      <span class="input-group-addon">
+						<%= check_box_tag "todos_checkbox[]",t.id %>
+					      </span>
+									      
+				<%= text_field_tag "todos_status[:status][]", (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'form-control' %>
+					    </div><!-- /input-group -->
+					</div><!-- /.col-lg-6 -->
+ 					 </td>
 					<td>
 					<% if t.todo_complete == true %>
           
