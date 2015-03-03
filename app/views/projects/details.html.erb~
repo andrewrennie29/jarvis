@@ -15,13 +15,19 @@
 <hr>
 
 <%= form_for @new_todo, :url => { :action => "add", :controller => "todos" } do |f| %>
-
-  <%= f.hidden_field :todo_project, :value => params[:project] %>
-  <%= f.text_field :todo_item %>
-  <%= f.submit "Add To Do", class: "btn btn-primary" %>
+<%= f.hidden_field :todo_project, :value => params[:project] %>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <%= f.text_field :todo_item, class: "form-control", placeholder: "Get this done..." %>
+      <span class="input-group-btn">
+        <%= f.submit "Add To Do", class: "btn btn-primary" %>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
 
 <% end %>
-
 <% if !flash[:error].nil? %>
 
   <div class="alert alert-error">
@@ -78,8 +84,18 @@
 			<% @project_todos.each do |t| %>
 				
 				<tr>	
-					<td><%= check_box_tag "todos_checkbox[]",t.id %> <%= hidden_field_tag "todos_status[:id][]", t.id %><%= text_field_tag "todos_status[:status][]", (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'input-supermini' %></td>
 					<td>
+<%= hidden_field_tag "todos_status[:id][]", t.id %>
+					
+					    <div class="input-group">
+					      <span class="input-group-addon">
+						<%= check_box_tag "todos_checkbox[]",t.id %>
+					      </span>
+									      
+				<%= text_field_tag "todos_status[:status][]", (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'form-control' %>
+					    </div><!-- /input-group -->
+					
+ 					 </td>
 						<% if t.todo_complete == true %>
           
 							<strike><%= t.todo_item %></strike>

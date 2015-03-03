@@ -101,6 +101,7 @@
 					
  					 </td>
 					<td>
+<% if t.todo_recurring == true %> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span><% end %>	
 					<% if t.todo_complete == true %>
           
 						<strike><%= t.todo_item %></strike>
@@ -155,8 +156,20 @@
 				
 				<tr>	
 					
-					<td><%= check_box_tag "todos_checkbox[]",t.id %> <%= hidden_field_tag "todos_status[:id][]", t.id %><%= text_field_tag "todos_status[:status][]", (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'input-supermini' %></td>
 					<td>
+<%= hidden_field_tag "todos_status[:id][]", t.id %>
+					
+					    <div class="input-group">
+					      <span class="input-group-addon">
+						<%= check_box_tag "todos_checkbox[]",t.id %>
+					      </span>
+									      
+				<%= text_field_tag "todos_status[:status][]", (((t.todo_status.to_f)*100).to_i).to_s + "%", class: 'form-control' %>
+					    </div><!-- /input-group -->
+					
+ 					 </td>
+					<td>
+					<% if t.todo_recurring == true %> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span><% end %>	
 					<% if t.todo_complete == true %>
           
 						<strike><%= t.todo_item %></strike>

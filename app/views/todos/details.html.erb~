@@ -47,7 +47,24 @@
   <tr><td width:10%>Todo:</td><td width:40%><%= f.text_field :todo_item %></td>
       <td width:10%>Status:</td><td width:40%><%= f.text_field :todo_status, :value => (((@details_todo.todo_status.to_f)*100).to_i).to_s + "%" %></td></tr>
   <tr><td width:10%>For:</td><td width:40%><%= f.text_field :todo_for %></td>
-      <td width:10%>Deadline:</td><td width:40%><%= f.text_field :todo_deadline, :class => 'datepicker' %></td></tr>
+      <td width:10%>Deadline:</td><td width:40%>
+
+<div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <%= f.text_field :todo_deadline %>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+
+</td></tr>
    <tr><br></tr>
 <tr><td width:10%>Category:</td><td width:40%><%= f.select( :todo_category, options_for_select([[''],['Work'],['Personal'],['Other']],@details_todo.todo_category)) %></td>
       <td width:10%>Project:</td><td width:40%><%= f.text_field :todo_project %></td></tr>
