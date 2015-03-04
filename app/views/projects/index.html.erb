@@ -10,21 +10,6 @@
 
 <hr>
 
-<%= form_for @new_todo, :url => { :action => "add", :controller => "todos" } do |f| %>
-
-<div class="row">
-  <div class="col-lg-6">
-    <div class="input-group">
-      <%= f.text_field :todo_item, class: "form-control", placeholder: "Get this done..." %>
-      <span class="input-group-btn">
-        <%= f.submit "Add To Do", class: "btn btn-primary" %>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-
-<% end %>
-
 <% if !flash[:error].nil? %>
 
   <div class="alert alert-error">
@@ -71,8 +56,8 @@
 				
 				<tr>	
 					
-					<td><span class="badge badge-info"><%= p.todo_item_count %></span></td>
-					<td><%= link_to p.todo_project, projectdetails_path(p.todo_project) %></td>
+					<td><span class="badge"><%= p.todo_item_count %></span></td>
+					<td><%= link_to p.todo_project, projectdetails_path(p.todo_project), class: "btn btn-default", role: "button"%></td>
 					<td><%= p.project_deadline.to_date %></td>
 					<td><%= number_with_precision(p.time_remaining, precision: 2) %></td>
 					<td><%= p.percentage_complete %>%</td>

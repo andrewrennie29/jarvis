@@ -121,7 +121,7 @@
 							<%= link_to t.todo_project, projectdetails_path(t.todo_project) %>
 							<% end %>
 						</td>
-					<td><%= t.todo_deadline.to_s(:date) %></td>
+					<td><%= t.todo_deadline.to_date %></td>
 
 				</tr>
 

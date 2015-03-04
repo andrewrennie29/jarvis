@@ -4,7 +4,7 @@
 
 <div class="row">
 
-<div class="span12">
+<div class="col-lg-12">
 
 <h1>Projects</h1>
 <h4><i><%= params[:project] %></i></h4>
@@ -54,7 +54,7 @@
 
 <%= form_tag("/todos/complete/", :method => "post") do %>
 
-<div class="span8">
+<div class="col-md-8">
 
 	<%= submit_tag("Update", :class=>"btn btn-success", :name=>"complete_todo") %>
 	<%= submit_tag("Delete", :class=>"btn btn-danger", :name=>"delete_todo") %>
@@ -69,12 +69,12 @@
 		<thead>
 	
 			<tr>
-				<th class="span2">Status</th>
-				<th class="span3">To Do Item</th>
-				<th class="span2">Deadline</th>
-				<th class="span1">Importance</th>
-				<th class="span1">Hours Still Required</th>
-				<th class="span1">% Completion</th>
+				<th class="col-xs-1">Status</th>
+				<th class="col-xs-3">To Do Item</th>
+				<th class="col-xs-2">Deadline</th>
+				<th class="col-xs-1">Importance</th>
+				<th class="col-xs-1">Hours Still Required</th>
+				<th class="col-xs-1">% Completion</th>
 			</tr>
 
 		</thead>
@@ -106,7 +106,7 @@
 							<%= link_to t.todo_item, details_path(t.id) %>
 						<% end %>
 					</td>
-					<td><%= t.todo_deadline %></td>
+					<td><%= t.todo_deadline.to_date %></td>
 					<td><%= t.todo_importance %></td>
 					<td><%= if t.todo_complete == true then 0 else number_with_precision(t.todo_timeremaining, precision: 2) end %></td>
 					<td><%= (if t.todo_complete == true then 100 else (100-(t.todo_timeremaining*100/t.todo_timerequired)) end).to_i %>%</td>

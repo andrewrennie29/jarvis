@@ -4,7 +4,7 @@
   <title>Jarvis</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+    <%= csrf_meta_tags %>
 </head>
 <body>
 
@@ -26,11 +26,20 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-	<li class="active"><a href="/projects/index">Projects</a></li>
-        <li class="active"><a href="/admin/index">Admin</a></li>
-	<li class="active"><a href="/logout">Logout</a></li>
+	<li><a href="/projects/index">Projects</a></li>
+        <li><a href="/admin/index">Admin</a></li>
+	<li><a href="/logout">Logout</a></li>
       </ul>
-      
+      <%= form_for @new_todo, :url => { :action => "add", :controller => "todos" } do |f| %>
+
+	    <div class="input-group">
+	      <%= f.text_field :todo_item, class: "form-control", placeholder: "Get this done..." %>
+	      <span class="input-group-btn">
+		<%= f.submit "Add To Do", class: "btn btn-primary" %>
+	      </span>
+	    </div><!-- /input-group -->
+
+	<% end %>
   
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

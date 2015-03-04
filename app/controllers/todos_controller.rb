@@ -156,6 +156,8 @@ class TodosController < ApplicationController
 
   def details
     
+    @new_todo = Todo.new    
+
     if Todo.allowview(params[:id], session[:user_id]).nil?
 
       flash[:error]="Invalid To Do"
@@ -187,7 +189,7 @@ class TodosController < ApplicationController
       t.todo_status = (params[:todo][:todo_status].delete('%').to_f)/100
     end
 
-    t.todo_deadline = (params[:todo][:todo_deadline]).to_datetime
+    t.todo_deadline = DateTime.strptime((params[:todo][:todo_deadline]), '%m/%d/%Y %I:%M %p')
 
     t.todo_recurring=params[:todo][:todo_recurring]
     

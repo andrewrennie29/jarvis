@@ -4,7 +4,7 @@
   <title>Jarvis</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+    <%= csrf_meta_tags %>
 </head>
 <body>
 
@@ -30,7 +30,16 @@
         <li><a href="/admin/index">Admin</a></li>
 	<li><a href="/logout">Logout</a></li>
       </ul>
-      
+      <%= form_for @new_todo, :url => { :action => "add", :controller => "todos" } do |f| %>
+	<%= f.hidden_field :todo_project, :value => params[:project] %>
+	    <div class="input-group">
+	      <%= f.text_field :todo_item, class: "form-control", placeholder: "Get this done..." %>
+	      <span class="input-group-btn">
+		<%= f.submit "Add To Do", class: "btn btn-primary" %>
+	      </span>
+	    </div><!-- /input-group -->
+
+	<% end %>
   
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

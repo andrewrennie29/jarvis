@@ -60,7 +60,7 @@
         </div>
 	<script type="text/javascript">
             $(function () {
-                $('#datetimepicker1').datetimepicker({ defaultDate: "<%= (@details_todo.todo_deadline).strftime("%m/%d/%Y %I:%M %p") %>" });
+                $('#datetimepicker1').datetimepicker({ showTodayButton: true, defaultDate: "<%= (@details_todo.todo_deadline).strftime("%m/%d/%Y %I:%M %p") %>" });
             });
         </script>
 

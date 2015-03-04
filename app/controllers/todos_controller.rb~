@@ -9,7 +9,7 @@ class TodosController < ApplicationController
     else
       
       session[:return_route] = index_path
-      Todo.connection.execute("UPDATE todos set todos.todo_urgence = 10/((todos.todo_deadline - now()) - todos.todo_timeremaining/8) WHERE todos.todo_complete = false or todos.todo_complete is null")
+      Todo.connection.execute("UPDATE todos set todos.todo_urgence = if(10/((todos.todo_deadline - now()) - todos.todo_timeremaining/8)<0,11,10/((todos.todo_deadline - now()) - todos.todo_timeremaining/8)) WHERE todos.todo_complete = false or todos.todo_complete is null")
       Todo.where("todo_urgence < 0 and user_id = ?", session[:user_id]).update_all todo_urgence: 11
       Todo.where("todo_complete is null").update_all todo_complete: false
       Todo.where("todo_complete is true AND todo_deadline < curdate() and user_id = ?", session[:user_id]).update_all todo_urgence: 0
@@ -156,6 +156,8 @@ class TodosController < ApplicationController
 
   def details
     
+    @new_todo = Todo.new    
+
     if Todo.allowview(params[:id], session[:user_id]).nil?
 
       flash[:error]="Invalid To Do"
@@ -187,7 +189,7 @@ class TodosController < ApplicationController
       t.todo_status = (params[:todo][:todo_status].delete('%').to_f)/100
     end
 
-    t.todo_deadline = (params[:todo][:todo_deadline]).to_datetime
+    t.todo_deadline = DateTime.strptime((params[:todo][:todo_deadline]), '%d/%m/%Y %I:%M %p')
 
     t.todo_recurring=params[:todo][:todo_recurring]
     
