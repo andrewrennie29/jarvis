@@ -27,8 +27,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 	<li><a href="/projects/index">Projects</a></li>
-	<li><a type="submit" data-toggle="modal" href="#adminModal">Admin</a></li>        
-	<li><a href="/admin/index">Admin</a></li>
+	<li><a type="submit" data-toggle="modal" href="#adminModal">Admin</a></li>
 	<li><a href="/logout">Logout</a></li>
       </ul>
 
@@ -51,7 +50,7 @@
 <% end %>
 
 </nav>
-
+<%= unless @user.nil? %>
 <!-- Modal -->
 <div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="adminModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -79,6 +78,8 @@
     </div>
   </div>
 </div>  
+
+<% end %>
 
 <%= yield %>
 

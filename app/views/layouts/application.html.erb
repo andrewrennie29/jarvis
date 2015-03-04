@@ -51,6 +51,7 @@
 
 </nav>
 
+<% unless @user.nil? %>
 <!-- Modal -->
 <div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="adminModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -78,6 +79,8 @@
     </div>
   </div>
 </div>  
+
+<% end %>
 
 <%= yield %>
 
