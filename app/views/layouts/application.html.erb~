@@ -50,31 +50,38 @@
 <% end %>
 
 </nav>
-<%= unless @user.nil? %>
+
+<% unless @user.nil? %>
 <!-- Modal -->
 <div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="adminModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="adminModalLabel">User Preferences</h4>
       </div>
 	<%= form_for @user, :url => { :controller=>"admin", :action => "updateuser" } do |f| %>
-	  <table style="width:600">
-	  <tr><td width:10%>Username:</td><td width:40%><%= f.text_field :username, :value => @user.username %></td>
-	      <td width:10%>Email:</td><td width:40%><%= f.text_field :email, :value => @user.email %></td></tr>
-	  <tr><td width:10%>Start Time:</td><td width:40%><% if @user.startwork.nil? %><%= f.text_field :startwork %><% else %> <%= f.text_field :startwork, :value => @user.startwork.to_s(:time) %> <% end %></td>
-	      <td width:10%>End Time:</td><td width:40%><% if @user.endwork.nil? %><%= f.text_field :endwork %><% else %> <%= f.text_field :endwork, :value => @user.endwork.to_s(:time) %> <% end %></td></tr>
-	  <tr><td width:10%>Lunch Start:</td><td width:40%><% if @user.lunchstart.nil? %><%= f.text_field :lunchstart %><% else %> <%= f.text_field :lunchstart, :value => @user.lunchstart.to_s(:time) %> <% end %></td>
-	      <td width:10%>Lunch Time:</td><td width:40%><%= f.text_field :lunchlength, :value => @user.lunchlength %></td></tr>
-	<tr><td width:10%>Send Daily Summary Emails:</td><td width:40%><%= f.check_box :dailysummarymail,  :value => @user.dailysummarymail %></td></tr>
-	  <tr><td width:80%><br><%= f.submit "Update Details", class: "btn btn-primary" %></td><td width:10%><br><%= link_to 'Back', :back %></td></tr>
-	  </table>
-	  <% end %>
+	<div class="input-group">
+	  <span class="input-group-addon" id="grp-username"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+	  <%= f.text_field :username, :value => @user.username, class: "form-control", placeholder: "Username" %>
+	</div>
+	<div class="input-group">
+	  <span class="input-group-addon" id="grp-email"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+	  <%= f.text_field :email, :value => @user.email, class: "form-control", placeholder: "yourmail@yourmail.com" %>
+	</div>
+	Start Time:<% if @user.startwork.nil? %><%= f.text_field :startwork %><% else %> <%= f.text_field :startwork, :value => @user.startwork.to_s(:time) %> <% end %>
+	End Time:<% if @user.endwork.nil? %><%= f.text_field :endwork %><% else %> <%= f.text_field :endwork, :value => @user.endwork.to_s(:time) %> <% end %>
+	Lunch Start:<% if @user.lunchstart.nil? %><%= f.text_field :lunchstart %><% else %> <%= f.text_field :lunchstart, :value => @user.lunchstart.to_s(:time) %> <% end %>
+	Lunch Time: <%= f.text_field :lunchlength, :value => @user.lunchlength %>
+	<div class="input-group">
+		<span class="input-group-addon" id="grp-dailymails"><%= f.check_box :dailysummarymail,  :value => @user.dailysummarymail, class: "form-control" %></span>Send Daily Summary Emails
+	</div> 
+	  
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <%= f.submit "Update Details", class: "btn btn-primary" %> 
       </div>
+<% end %>
     </div>
   </div>
 </div>  
