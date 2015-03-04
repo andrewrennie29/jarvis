@@ -14,20 +14,6 @@
 
 <hr>
 
-<%= form_for @new_todo, :url => { :action => "add", :controller => "todos" } do |f| %>
-<%= f.hidden_field :todo_project, :value => params[:project] %>
-<div class="row">
-  <div class="col-lg-6">
-    <div class="input-group">
-      <%= f.text_field :todo_item, class: "form-control", placeholder: "Get this done..." %>
-      <span class="input-group-btn">
-        <%= f.submit "Add To Do", class: "btn btn-primary" %>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-
-<% end %>
 <% if !flash[:error].nil? %>
 
   <div class="alert alert-error">
@@ -102,8 +88,29 @@
 							<strike><%= t.todo_item %></strike>
 	
 						<% else %>
-						
-							<%= link_to t.todo_item, details_path(t.id) %>
+							
+							<!-- Button trigger modal -->
+							  <button class="btn btn-link" data-toggle="modal" data-target="#todo-<%= t.id %>-notes">
+							    View notes
+							  </button>
+
+							  <!-- Modal -->
+							  <div class="modal fade" id="todo-<%= t.id %>-notes" tabindex="-1" role="dialog" aria-labelledby="todo-<%= t.id %>-label" aria-hidden="true">
+							    <div class="modal-dialog">
+							      <div class="modal-content">
+								<div class="modal-header">
+								  <h4 class="modal-title" id="todo-<%= t.id %>-label">Notes</h4>
+								</div>
+								<div class="modal-body">
+								  <%= t.todo_item %>
+								</div>
+								<div class="modal-footer">
+								  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+								</div>
+							      </div>
+							    </div>
+							  </div>
+
 						<% end %>
 					</td>
 					<td><%= t.todo_deadline.to_date %></td>

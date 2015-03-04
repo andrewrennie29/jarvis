@@ -189,7 +189,7 @@ class TodosController < ApplicationController
       t.todo_status = (params[:todo][:todo_status].delete('%').to_f)/100
     end
 
-    t.todo_deadline = DateTime.strptime((params[:todo][:todo_deadline]), '%d/%m/%Y %I:%M %p')
+    t.todo_deadline = DateTime.strptime((params[:todo][:todo_deadline]), '%m/%d/%Y %I:%M %p')
 
     t.todo_recurring=params[:todo][:todo_recurring]
     

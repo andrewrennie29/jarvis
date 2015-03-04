@@ -88,8 +88,9 @@
 							<strike><%= t.todo_item %></strike>
 	
 						<% else %>
-						
+							
 							<%= link_to t.todo_item, details_path(t.id) %>
+
 						<% end %>
 					</td>
 					<td><%= t.todo_deadline.to_date %></td>

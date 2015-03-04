@@ -40,7 +40,7 @@
 <div class="well">
   
 
-  <%= form_for @user, :url => { :action => "updateuser" } do |f| %>
+  <%= form_for @user, :url => { :controller => "admin", :action => "updateuser"  } do |f| %>
   <table style="width:600">
   <tr><td width:10%>Username:</td><td width:40%><%= f.text_field :username, :value => @user.username %></td>
       <td width:10%>Email:</td><td width:40%><%= f.text_field :email, :value => @user.email %></td></tr>
